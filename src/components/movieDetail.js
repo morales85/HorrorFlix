@@ -1,26 +1,29 @@
 import React, { Component } from 'react';
 // import YouTube from 'react-youtube';
-// import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import Button from '@material-ui/core/Button';
 import '../style/movie.css'
-
+import '../style/movieDetail.css'
 
 class MovieDetail extends Component {
 
+
     render() {
-    const id = this.props.match.params.id
-    const movie = this.props.movies
-    console.log(id)
-    console.log(movie[id])
+    const title = this.props.match.params.title
+    const movie = this.props.movies.find(m => m.title == title)
+    // const animation = this.props.animation.find(m => m.tittle == title)
+    // console.log(id)
+    console.log(movie)
 
         return (
-            movie[id] ? <h3>{movie[id].title}</h3> : <div>loading</div>
-            // <div id="movie">
-            //     <h3>{movie[id].title}</h3>
-            //     {/* <h3>{movie[title].title} ({movie[title].release_date})</h3> */}
-            //     {/* <p className='description'>{movie[id].descrShort}</p> */}
-            //     {/* <YouTube className='trailer' videoId={movie[id].trailer} onReady={this._onReady}/> */}
-            // </div>
+                        <div id="movie">
+            <h3>{movie.title}({movie.release_date})</h3> 
+            <div className='descPic'>
+                <img className="imagen" src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="" />
+                <span className='description'>{movie.overview}</span>
+            </div>
+            <Link style={{ textDecoration: 'none' }} to="/catalog"><Button variant="outlined" className='backb'>Back</Button></Link>
+            </div>
         )
     }
 }

@@ -15,19 +15,29 @@ class App extends Component {
     
     this.state = {
       movies:[],
-      favs:[],
+      comedies:[],
+      animation:[],
+      allmovies:[],
       budget: 15,
       input: ""
     }
   } 
   componentDidMount = async ()=>{
     let data = await axios.get("https://api.themoviedb.org/3/discover/movie?api_key=c703c8747b59946dcb55745504d255fd&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=true&page=1&with_genres=27", function(){})
+    let data2 = await axios.get("https://api.themoviedb.org/3/discover/movie?api_key=c703c8747b59946dcb55745504d255fd&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=true&page=2&with_genres=27", function(){})
+    let data3 = await axios.get("https://api.themoviedb.org/3/discover/movie?api_key=c703c8747b59946dcb55745504d255fd&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=true&page=3&with_genres=27", function(){})
+    let data4 = await axios.get("https://api.themoviedb.org/3/discover/movie?api_key=c703c8747b59946dcb55745504d255fd&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=true&page=4&with_genres=27", function(){})
+    let results = data.data.results.concat(data2.data.results.concat(data3.data.results).concat(data4.data.results))
+    console.log(results)
     this.setState({
-      movies: data.data.results
+      movies: results
     })
-    // let movies = data.data.results
-    console.log(this.state.movies)
+
+
   }
+
+  
+
 rentMovie = id =>{
   let movies = [...this.state.movies]
   let rentedMovie = movies.find(m => m.id === id)
@@ -57,19 +67,19 @@ render () {
         <div className="dropdown">
           <span className='catalog'><Link style={{ textDecoration: 'none' }} to="/catalog">Catalog</Link></span>
           <div className="dropdown-content">
-            <Link style={{ textDecoration: 'none' }} to="/phase1">Phase 1</Link>
-            <Link style={{ textDecoration: 'none' }} to="/phase2">Phase 2</Link>
-            <Link style={{ textDecoration: 'none' }} to="/phase3">Phase 3</Link>
+            <Link style={{ textDecoration: 'none' }} to="/catalog">Horror</Link>
+            {/* <Link style={{ textDecoration: 'none' }} to="/comedy">Comedy</Link>
+            <Link style={{ textDecoration: 'none' }} to="/animation">Animation</Link> */}
           </div>
         </div>
         <span className='logo'>REFLIX</span>
       </div>
       <Route path="/" exact component={Landing} />
-      <Route exact path="/catalog" render={() => <Catalog movies={this.state.movies} rentMovie={this.newMovie} input={this.state.input} searchMovie={this.searchMovie} budget={this.state.budget} />} />
-      <Route exact path="/phase1" render={() => <Phase1 movies={this.state.movies} rentMovie={this.rentMovie} input={this.state.input} searchMovie={this.searchMovie} budget={this.state.budget} />} />
-      <Route exact path="/phase2" render={() => <Phase2 movies={this.state.movies} rentMovie={this.rentMovie} input={this.state.input} searchMovie={this.searchMovie} budget={this.state.budget} />} />
-      <Route exact path="/phase3" render={() => <Phase3 movies={this.state.movies} rentMovie={this.rentMovie} input={this.state.input} searchMovie={this.searchMovie} budget={this.state.budget} />} />
-      <Route path="/movies/:id" exact render={({ match }) => <MovieDetail rentMovie={this.rentMovie} match={match} movies={this.state.movies} />}/>
+      {/* <Route exact path="/catalog" render={() => <Catalog movies={this.state.movies} rentMovie={this.newMovie} input={this.state.input} searchMovie={this.searchMovie} budget={this.state.budget} />} /> */}
+      <Route exact path="/catalog" render={() => <Catalog movies={this.state.movies} rentMovie={this.rentMovie} input={this.state.input} searchMovie={this.searchMovie} budget={this.state.budget} />} />
+      <Route exact path="/Comedy" render={() => <Phase2 comedies={this.state.comedies} rentMovie={this.rentMovie} input={this.state.input} searchMovie={this.searchMovie} budget={this.state.budget} />} />
+      <Route exact path="/animation" render={() => <Phase3 animation={this.state.animation} rentMovie={this.rentMovie} input={this.state.input} searchMovie={this.searchMovie} budget={this.state.budget} />} />
+      <Route path="/movies/:title" exact render={({ match }) =>  <MovieDetail rentMovie={this.rentMovie} match={match} movies={this.state.movies}  />}/>
     </div>
     </Router>
   )

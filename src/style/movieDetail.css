@@ -1,0 +1,25 @@
+.descPic{
+    display: flex
+}
+.imagen{
+    float: left;
+    width:40vh;
+    height: 55vh;
+    margin: 2vh;
+    border-radius: 12px;
+    -webkit-box-shadow: 0px 0px 17px 7px rgba(0,0,0,0.73);
+    -moz-box-shadow: 0px 0px 17px 7px rgba(0,0,0,0.73);
+    box-shadow: 0px 0px 17px 7px rgba(0,0,0,0.73);
+}
+.description {
+    font-family: 'Montserrat', sans-serif;
+    text-indent: 50px;
+    margin-left: 2vh;
+    margin-right: 2vh;
+    text-align: justify;
+    float: right;
+  }
+
+  .backb{
+      margin-left: 50vh
+  }

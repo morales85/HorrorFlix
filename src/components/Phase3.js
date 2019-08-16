@@ -10,9 +10,9 @@ class Phase3 extends Component {
       }
 
   render() {
-    let movies = this.props.movies
+    let animation = this.props.animation
     let input = this.props.input.toLowerCase()
-console.log(movies)
+console.log(animation)
     return (
         <div>
             <div className='menu'>
@@ -20,14 +20,14 @@ console.log(movies)
           </div>
           <h4>Budget: {this.props.budget}</h4>
         <div className="movies">
-        {movies.some(m => m.isRented) ?
+        {animation.some(m => m.isRented) ?
             <div>
               <h2>Rented: </h2>
-                {movies.filter(m => m.phase === 3 && m.isRented && m.title.toLowerCase().includes(input)).map(m => <Movie key={m.id} movie={m} rentMovie={this.props.rentMovie} />)}
+                {animation.filter(m =>  m.isRented && m.title.toLowerCase().includes(input)).map(m => <Movie key={m.id} movie={m} rentMovie={this.props.rentMovie} />)}
             </div> : ""
           }
                 <h2>Phase 3:</h2>
-                {movies.filter(m => m.phase === 3 && !m.isRented  && m.title.toLowerCase().includes(input)).map(m => <Movie key={m.id} movie={m} rentMovie={this.props.rentMovie} />)}
+                {animation.filter(m => !m.isRented  && m.title.toLowerCase().includes(input)).map(m => <Movie key={m.id} movie={m} rentMovie={this.props.rentMovie} />)}
         </div>
         </div>
     );

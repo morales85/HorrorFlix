@@ -16,7 +16,7 @@ class Movie extends Component {
     return (
       
         <div className='movies'>
-        <Link to={`/movies/${movie.id}`}>
+        <Link to={`/movies/${movie.title}`}>
             <img className="img" src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="" />
         </Link>
         {movie.isRented ? <p className='rent' onClick={this.rentMovie}>Rented</p> : <p className='rent' onClick={this.rentMovie}>Rent</p>}
