@@ -12,8 +12,7 @@ margin-top: 10vh;
     color: red;
     display: grid;
     flex-direction: column;
-    justify-content: center;
-
+margin-left: 78vh;
 }
 #rafa{
     display: inline-block;

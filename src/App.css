@@ -46,12 +46,12 @@ a:visited {
 
 
 .logo{
-  color: black;
-  background-color: red;
+  background-image: url(/logo/twitter_header_photo_1.png);
+  height: 14vh;
+  width: 40vh;
   float: right;
   margin-right: 2vh;
-  font-size: 50px;
-  padding:2px
+  border-radius: 5px;
 }
 
 .main{

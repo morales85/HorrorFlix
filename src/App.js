@@ -7,6 +7,8 @@ import Favourites from './components/Favourites';
 import MovieDetail from './components/movieDetail';
 import FavouriteDetail from './components/FavouriteDetail';
 import axios from 'axios'
+import logo from './style/twitter_header_photo_1.png';
+
 
 class App extends Component {
   constructor() {
@@ -83,7 +85,8 @@ render () {
             <Link style={{ textDecoration: 'none' }} to="/catalog">Horror</Link>
           </div> */}
         {/* </div> */}
-        <span className='logo'>HORRORFLIX</span>
+        {/* <span className='logo'>HORRORFLIX</span> */}
+        <img src={logo} className='logo'></img>
       </div>
       <Route path="/" exact component={Landing} />
       <Route exact path="/catalog" render={() => <Catalog movies={this.state.movies} rentMovie={this.rentMovie} input={this.state.input} searchMovie={this.searchMovie} newFav={this.newFav} />} />
