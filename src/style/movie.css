@@ -1,17 +1,11 @@
 
-  .trailer{
-    margin-left: 21%;
-    height: 70vh;
-    width: 120vh;
-  }
-
   #movie{
     margin-top: 5vh;
   }
   h3{
-    margin-left: 2vh
+    margin-left: 2vh;
+    color: #c0392b
   }
-
 
     input{
       margin-top: 2vh;
@@ -62,9 +56,9 @@
     margin-top: -1vh;
     cursor: pointer;
   }
-    .img:hover{
+    /* .img:hover{
       transform: translateY(-10px);
-    }
+    } */
   h2{
       margin-left: 2vh;
       color: #c0392b

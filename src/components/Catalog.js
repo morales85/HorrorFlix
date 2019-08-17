@@ -95,8 +95,8 @@ class Catalog extends Component {
                 <h2>Catalog:</h2>
                 <div className='sorting'>
                   <span>Sort by title</span>
-                  <span className='sort' onClick={this.titleA}>▼</span>
                   <span className='sort' onClick={this.titleZ}>▲</span>
+                  <span className='sort' onClick={this.titleA}>▼</span>
                 </div>
                 {movies.length >0 ? movies.filter(m => m.title.toLowerCase().includes(input)).slice((this.state.page  * 16), (this.state.page * 16) + 16).map(m => <Movie key={m.id} movie={m} favourites={this.props.favourites} rentMovie={this.props.rentMovie} newFav={this.props.newFav}   />) : null}
         </div>
