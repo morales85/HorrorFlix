@@ -1,7 +1,18 @@
 .next{
     float: right;
-    color: red
+    color: #c0392b
 }
 .numPages{
     margin-left: 38.5%
+}
+
+.sort{
+    color: #c0392b;
+    cursor: pointer
+}
+.sorting{
+color: #c0392b;
+font-size: 20px;
+margin-left: 2vh;
+
 }

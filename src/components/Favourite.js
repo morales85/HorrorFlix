@@ -17,7 +17,7 @@ class Favourite extends Component {
 
   render() {
     let favourite = this.props.favourite
-    console.log(favourite)
+    // console.log(favourite)
 
     return (
       
@@ -25,7 +25,7 @@ class Favourite extends Component {
         <Link to={`/favourites/${favourite.title}`}>
             <img className="img" src={`https://image.tmdb.org/t/p/w500/${favourite.poster_path}`} alt="" />
         </Link>
-        <p className='rent' onClick={this.deleteFav}>X</p>
+        <p className='remove' onClick={this.deleteFav}>Remove</p>
         </div>
 
     )

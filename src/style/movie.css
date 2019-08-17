@@ -19,16 +19,24 @@
       width: 40vh;
       height: 3vh;
       border-radius: 2px;
-      color: red;
+      color: #c0392b;
       background-color: black;
       outline: none;
       border: 0;
-      border-bottom: 1px solid red;
+      border-bottom: 1px solid #c0392b;
       font-size: 30px
   }
   .movies{
       display: inline-block;
       margin-left: 3.5vh;
+      margin-top: 2vh;
+      overflow: hidden; 
+  }
+  .plus{
+    display: inline-block;
+    position: absolute;
+    margin-left: -10vh;
+    margin-top: 5vh;
   }
   .img{
       width:40vh;
@@ -41,18 +49,25 @@
   }
   
   .rent{
-      color: red;
-      margin-left: 42%;
+      color: #c0392b;
+      margin-left: 45%;
       margin-right: 37%;
       margin-top: -1vh;
       cursor: pointer;
-  
+  }
+  .remove{
+    color: #c0392b;
+    margin-left: 40%;
+    margin-right: 37%;
+    margin-top: -1vh;
+    cursor: pointer;
   }
     .img:hover{
       transform: translateY(-10px);
     }
   h2{
-      margin-left: 2vh
+      margin-left: 2vh;
+      color: #c0392b
   
   }
   h4{

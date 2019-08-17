@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import { Link } from "react-router-dom";
 // import MovieDetail from './MovieDetail';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
 
  
 class Movie extends Component {
@@ -11,12 +15,26 @@ class Movie extends Component {
   }
 
   addFav = () => {
-    let newFav = this.props.movie
-    this.props.newFav(newFav)
-    console.log(this.props.movie)
+    let titles = this.props.favourites.map(m => m.title)
+    let findMovie = titles.includes(this.props.movie.title)
+    // console.log(titles)
+    // console.log(this.props.movie.title)
+    // console.log(findMovie)
+    if(findMovie == false){
+      this.props.newFav(this.props.movie)
+    } else {
+      console.log('movie already in favourites')
     }
+    }
+    
 
   render() {
+    const theme = createMuiTheme({
+      palette: {
+        primary: { main: '#11cb5f' }, // Purple and green play nicely together.
+        secondary: { main: '#c0392b' }, // This is just green.A700 as hex.
+      },
+    });
     let movie = this.props.movie
     // console.log(movie)
 
@@ -26,7 +44,9 @@ class Movie extends Component {
         <Link to={`/movies/${movie.title}`}>
             <img className="img" src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="" />
         </Link>
-        <p className='rent' onClick={this.addFav}>Favourite</p>
+        <ThemeProvider theme={theme}>
+        <span className='plus'><Fab size="small" color="secondary" aria-label="add"  onClick={this.addFav} ><AddIcon /></Fab></span>
+        </ThemeProvider>
         </div>
 
     )

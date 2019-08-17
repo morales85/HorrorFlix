@@ -9,7 +9,7 @@ body{
 margin-top: 10vh;
 }
 .header{
-    color: red;
+    color: #c0392b;
     display: grid;
     flex-direction: column;
 margin-left: 78vh;
@@ -23,8 +23,8 @@ margin-left: 78vh;
     background-size: 120%;
     background-position: center; 
     background-repeat: no-repeat;
-    background-color: red;
-    color: red;
+    background-color: #c0392b;
+    color: #c0392b;
     margin-left:44vh;
     margin-top: 9vh;
     text-align: center;
@@ -46,7 +46,7 @@ margin-left: 78vh;
 .rafaText{
     margin-left: 55vh;
     margin-top: 2vh;
-    color: red;
+    color: #c0392b;
     font-weight: bolder;
     font-size: 25px;
 
@@ -54,7 +54,7 @@ margin-left: 78vh;
 .ayaText{
     margin-left: 24vh;
     margin-top: 2vh;
-    color: red;
+    color: #c0392b;
     font-weight: bolder;
     font-size: 25px;
 
@@ -62,7 +62,7 @@ margin-left: 78vh;
 .totoText{
     margin-left: 23vh;
     margin-top: 2vh;
-    color: red;
+    color: #c0392b;
     font-weight: bolder;
     font-size: 25px;
 
