@@ -1,11 +1,9 @@
 body{
-    background-color: silver;
+    background-color: black;
     /* background-image: url("/src/86113.jpg"); */
     font-family: 'Montserrat', sans-serif;
 }
-.intro{
-    margin-left: 28%;
-}
+
 
 #home-container{
 margin-top: 10vh;
@@ -22,17 +20,19 @@ margin-top: 10vh;
     font-size: 5vh;
     padding:15vh;
     border-radius: 20px;
-    background-image: url(https://i.etsystatic.com/15019647/r/il/c43948/1185855186/il_794xN.1185855186_sz9j.jpg);
-    background-size: 100%;
+    background-image: url(https://res.cloudinary.com/teepublic/image/private/s--N4WEOUwk--/t_Preview/b_rgb:39383d,c_limit,f_jpg,h_630,q_90,w_630/v1509132094/production/designs/2005019_1.jpg);
+    background-size: 120%;
+    background-position: center; 
+    background-repeat: no-repeat;
     background-color: red;
-    color: black;
+    color: red;
     margin-left:44vh;
     margin-top: 9vh;
     text-align: center;
     text-decoration: none;
-    -webkit-box-shadow: 0px 0px 17px 7px rgba(0,0,0,0.73);
-    -moz-box-shadow: 0px 0px 17px 7px rgba(0,0,0,0.73);
-    box-shadow: 0px 0px 17px 7px rgba(0,0,0,0.73);
+    -webkit-box-shadow: 0px 0px 17px 7px rgba(175, 31, 31, 0.73);
+    -moz-box-shadow: 0px 0px 17px 7px rgba(175, 31, 31, 0.73);
+    box-shadow: 0px 0px 17px 7px rgba(175, 31, 31, 0.73);
 
 }
 .rafa{
@@ -47,7 +47,7 @@ margin-top: 10vh;
 .rafaText{
     margin-left: 55vh;
     margin-top: 2vh;
-    color: black;
+    color: red;
     font-weight: bolder;
     font-size: 25px;
 
@@ -55,7 +55,7 @@ margin-top: 10vh;
 .ayaText{
     margin-left: 24vh;
     margin-top: 2vh;
-    color: black;
+    color: red;
     font-weight: bolder;
     font-size: 25px;
 
@@ -63,7 +63,7 @@ margin-top: 10vh;
 .totoText{
     margin-left: 23vh;
     margin-top: 2vh;
-    color: black;
+    color: red;
     font-weight: bolder;
     font-size: 25px;
 
@@ -77,18 +77,16 @@ margin-top: 10vh;
     font-size: 5vh;
     padding:15vh;
     border-radius: 20px;
-    background-image: url(https://cdn.dribbble.com/users/1201766/screenshots/6193642/artboard_1.png);
-    background-size: 136%;
+    background-image: url(https://ih0.redbubble.net/image.550714467.1941/flat,550x550,075,f.u2.jpg);
+    background-size: 100%;
     background-position: center; 
     background-repeat: no-repeat;
-    background-color: pink;
-    color: black;
     margin-left: 90px;
     margin-top: 9vh;
     text-align: center;
-    -webkit-box-shadow: 0px 0px 17px 7px rgba(0,0,0,0.73);
-    -moz-box-shadow: 0px 0px 17px 7px rgba(0,0,0,0.73);
-    box-shadow: 0px 0px 17px 7px rgba(0,0,0,0.73);
+    -webkit-box-shadow: 0px 0px 17px 7px rgba(175, 31, 31, 0.73);
+    -moz-box-shadow: 0px 0px 17px 7px rgba(175, 31, 31, 0.73);
+    box-shadow: 0px 0px 17px 7px rgba(175, 31, 31, 0.73);
 }
 #aya:hover{
     transform: translateY(-10px);
@@ -98,19 +96,18 @@ margin-top: 10vh;
     font-size: 5vh;
     padding:15vh;
     border-radius: 20px;
-    background-image: url(https://mir-s3-cdn-cf.behance.net/projects/404/febd3555637055.598c8275e1894.jpg);
-    background-size: 130%;
+    background-image: url(https://i.pinimg.com/originals/89/e8/45/89e845b1f3e6792f5b0b555d24e7ce4b.jpg);
+    background-size: 100%;
     background-position: center; 
     background-repeat: no-repeat;
-    background-color: goldenrod;
-    color: black;
     margin-left: 90px;
     margin-top: 9vh;
     text-align: center;
-    -webkit-box-shadow: 0px 0px 17px 7px rgba(0,0,0,0.73);
-    -moz-box-shadow: 0px 0px 17px 7px rgba(0,0,0,0.73);
-    box-shadow: 0px 0px 17px 7px rgba(0,0,0,0.73);
+    -webkit-box-shadow: 0px 0px 17px 7px rgba(175, 31, 31, 0.73);
+    -moz-box-shadow: 0px 0px 17px 7px rgba(175, 31, 31, 0.73);
+    box-shadow: 0px 0px 17px 7px rgba(175, 31, 31, 0.73);
 }
 #toto:hover{
     transform: translateY(-10px);
   }
+

@@ -2,12 +2,19 @@ import React, { Component } from 'react'
 import { Link } from "react-router-dom";
 // import MovieDetail from './MovieDetail';
 
-
+ 
 class Movie extends Component {
+
 
   rentMovie = () =>{
     this.props.rentMovie(this.props.movie.id)
   }
+
+  addFav = () => {
+    let newFav = this.props.movie
+    this.props.newFav(newFav)
+    console.log(this.props.movie)
+    }
 
   render() {
     let movie = this.props.movie
@@ -19,7 +26,7 @@ class Movie extends Component {
         <Link to={`/movies/${movie.title}`}>
             <img className="img" src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="" />
         </Link>
-        {movie.isRented ? <p className='rent' onClick={this.rentMovie}>Rented</p> : <p className='rent' onClick={this.rentMovie}>Rent</p>}
+        <p className='rent' onClick={this.addFav}>Favourite</p>
         </div>
 
     )

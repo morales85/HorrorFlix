@@ -3,10 +3,9 @@ import './App.css';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Landing from './components/Landing';
 import Catalog from './components/Catalog';
-import Phase1 from './components/Phase1';
-import Phase2 from './components/Phase2';
-import Phase3 from './components/Phase3';
+import Favourites from './components/Favourites';
 import MovieDetail from './components/movieDetail';
+import FavouriteDetail from './components/FavouriteDetail';
 import axios from 'axios'
 
 class App extends Component {
@@ -15,10 +14,8 @@ class App extends Component {
     
     this.state = {
       movies:[],
-      comedies:[],
-      animation:[],
-      allmovies:[],
-      budget: 15,
+      // allmovies:[],
+      favourites:[],
       input: ""
     }
   } 
@@ -28,16 +25,19 @@ class App extends Component {
     let data3 = await axios.get("https://api.themoviedb.org/3/discover/movie?api_key=c703c8747b59946dcb55745504d255fd&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=true&page=3&with_genres=27", function(){})
     let data4 = await axios.get("https://api.themoviedb.org/3/discover/movie?api_key=c703c8747b59946dcb55745504d255fd&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=true&page=4&with_genres=27", function(){})
     let results = data.data.results.concat(data2.data.results.concat(data3.data.results).concat(data4.data.results))
-    console.log(results)
+    // console.log(results)
     this.setState({
       movies: results
-    })
+    });
 
+    let favs = await axios.get("http://localhost:5000/movies", function(){})
+    this.setState({
+      favourites: favs.data
+    })
+    // console.log(this.state.favourites)
 
   }
-
-  
-
+ 
 rentMovie = id =>{
   let movies = [...this.state.movies]
   let rentedMovie = movies.find(m => m.id === id)
@@ -55,6 +55,18 @@ searchMovie = (event) => {
   this.setState({ [inputMovie]: searchValue })
 }
 
+newFav = async movie => {
+  let data = await axios.post("http://localhost:5000/movie", movie, function(){})
+  this.setState({
+    favourites: data.data
+  })
+}
+deleteFav = async movie => {
+  let data = await axios.delete("http://localhost:5000/movie/:title", movie, function(){})
+  this.setState({
+    favourites: data.data
+  })
+}
 
 
 render () {
@@ -64,22 +76,20 @@ render () {
     <div className="App">
       <div className='main'>
         <span className='home' ><Link style={{ textDecoration: 'none' }} to="/">Home</Link></span>
-        <div className="dropdown">
-          <span className='catalog'><Link style={{ textDecoration: 'none' }} to="/catalog">Catalog</Link></span>
-          <div className="dropdown-content">
+        {/* <div className="dropdown"> */}
+        <span className='catalog'><Link style={{ textDecoration: 'none' }} to="/catalog">Catalog</Link></span>
+        <span className='catalog'><Link style={{ textDecoration: 'none' }} to="/favourites">Favourites</Link></span>
+          {/* <div className="dropdown-content">
             <Link style={{ textDecoration: 'none' }} to="/catalog">Horror</Link>
-            {/* <Link style={{ textDecoration: 'none' }} to="/comedy">Comedy</Link>
-            <Link style={{ textDecoration: 'none' }} to="/animation">Animation</Link> */}
-          </div>
-        </div>
-        <span className='logo'>REFLIX</span>
+          </div> */}
+        {/* </div> */}
+        <span className='logo'>HORRORFLIX</span>
       </div>
       <Route path="/" exact component={Landing} />
-      {/* <Route exact path="/catalog" render={() => <Catalog movies={this.state.movies} rentMovie={this.newMovie} input={this.state.input} searchMovie={this.searchMovie} budget={this.state.budget} />} /> */}
-      <Route exact path="/catalog" render={() => <Catalog movies={this.state.movies} rentMovie={this.rentMovie} input={this.state.input} searchMovie={this.searchMovie} budget={this.state.budget} />} />
-      <Route exact path="/Comedy" render={() => <Phase2 comedies={this.state.comedies} rentMovie={this.rentMovie} input={this.state.input} searchMovie={this.searchMovie} budget={this.state.budget} />} />
-      <Route exact path="/animation" render={() => <Phase3 animation={this.state.animation} rentMovie={this.rentMovie} input={this.state.input} searchMovie={this.searchMovie} budget={this.state.budget} />} />
+      <Route exact path="/catalog" render={() => <Catalog movies={this.state.movies} rentMovie={this.rentMovie} input={this.state.input} searchMovie={this.searchMovie} newFav={this.newFav} />} />
+      <Route exact path="/favourites" render={() => <Favourites favourites={this.state.favourites} rentMovie={this.rentMovie} input={this.state.input} searchMovie={this.searchMovie} deleteFav={this.deleteFav}  />} />
       <Route path="/movies/:title" exact render={({ match }) =>  <MovieDetail rentMovie={this.rentMovie} match={match} movies={this.state.movies}  />}/>
+      <Route path="/favourites/:title" exact render={({ match }) =>  <FavouriteDetail rentMovie={this.rentMovie} match={match} favourites={this.state.favourites}  />}/>
     </div>
     </Router>
   )

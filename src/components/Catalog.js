@@ -8,7 +8,8 @@ class Catalog extends Component {
   constructor(){
     super()
     this.state ={
-      page:0
+      page:0,
+
     }
   }
     searchMovie = (e) => {
@@ -36,31 +37,25 @@ class Catalog extends Component {
         })
       }
       
+
+
   render() {
     let movies = this.props.movies
     let input = this.props.input.toLowerCase()
-  console.log(movies)
+  // console.log(movies)
     return (
-      
         <div>
             <div className='menu'>
                 <input name="input" type="text" placeholder="Find a movie!" value={this.props.input} onChange={this.searchMovie} />
           </div>
-          <h4>Budget: {this.props.budget}</h4>
         <div className="movies">
-        {movies.some(m => m.isRented) ?
-            <div>
-              <h2>Rented: </h2>
-                {movies.filter(m => m.isRented && m.title.toLowerCase().includes(input)).map(m => <Movie key={m.id} movie={m} rentMovie={this.props.rentMovie} />)}
-            </div> : ""
-          }
                 <h2>Catalog:</h2>
-                {movies.length >0 ? movies.filter(m => m.title.toLowerCase().includes(input)).slice((this.state.page  * 16), (this.state.page * 16) + 16).map(m => <Movie key={m.id} movie={m} rentMovie={this.props.rentMovie}   />) : null}
+                {movies.length >0 ? movies.filter(m => m.title.toLowerCase().includes(input)).slice((this.state.page  * 16), (this.state.page * 16) + 16).map(m => <Movie key={m.id} movie={m} rentMovie={this.props.rentMovie} newFav={this.props.newFav}   />) : null}
         </div>
         <div className="paging">
-          <Button variant="outlined" className='pre' onClick={this.previousPage}>Previous Page</Button>
+          <Button variant="outlined" color="secondary" className='pre' onClick={this.previousPage}>Previous Page</Button>
           <span className='numPages'>{this.state.page * 16} - {this.state.page * 16 + 16}</span> 
-          <Button variant="outlined" className='next' onClick={this.nextPage}>Next Page</Button>
+          <Button variant="outlined" color="secondary" className='next' onClick={this.nextPage}>Next Page</Button>
         </div>
         </div>
     );

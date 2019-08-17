@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-// import ReactPlayer from 'react-player'
 
 import '../style/home.css'
 
-class Home extends Component {
+class Landing extends Component {
 
     render() {
         return (
             <div>
                 <div id="home-container">
-                {/* <ReactPlayer className='intro' url='https://giant.gfycat.com/RegalNegligibleChupacabra.webm'
-                 loop='true'  playing /> */}
+
                     <div><h1 className='header'>WHO'S WATCHING???</h1></div>
                 </div>
                 <div className='users'>
@@ -39,4 +37,4 @@ class Home extends Component {
     }
 }
 
-export default Home;
+export default Landing;
