@@ -13,16 +13,16 @@ class Favourite extends Component {
   }
 
   deleteFav = () => {
-    // let deleteFav = this.props.favourite
-    // this.props.deleteFav(deleteFav)
+    let deleteFav = this.props.favourite
+    this.props.deleteFav(deleteFav)
     console.log(this.props.favourite)
     }
 
   render() {
     const theme = createMuiTheme({
       palette: {
-        primary: { main: '#11cb5f' }, // Purple and green play nicely together.
-        secondary: { main: '#c0392b' }, // This is just green.A700 as hex.
+        primary: { main: '#11cb5f' }, 
+        secondary: { main: '#c0392b' }, 
       },
     });
     let favourite = this.props.favourite
@@ -37,7 +37,6 @@ class Favourite extends Component {
         <ThemeProvider theme={theme}>
         <span className='plus'><Fab size="small" color="secondary"  onClick={this.deleteFav} ><DeleteIcon /></Fab></span>
         </ThemeProvider>
-        <p className='remove' onClick={this.deleteFav}>Remove</p>
         </div>
 
     )

@@ -16,8 +16,8 @@ class MovieDetail extends Component {
     render() {
         const theme = createMuiTheme({
             palette: {
-              primary: { main: '#11cb5f' }, // Purple and green play nicely together.
-              secondary: { main: '#c0392b' }, // This is just green.A700 as hex.
+              primary: { main: '#11cb5f' }, 
+              secondary: { main: '#c0392b' }, 
             },
           });
     const title = this.props.match.params.title

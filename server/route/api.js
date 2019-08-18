@@ -18,14 +18,13 @@ router.post('/movie', async function(req, res){
 })
 
 router.delete('/movie/:title', function(req, res){
-    let title = req.params.title
-    console.log(title)
-    Movie.findOne({title: title}, function(err, movie){
+    console.log(req.params.title)
+    Movie.findOne({title: req.params.title}, function(err, movie){
         movie.remove(function (err) {
             console.log(err)
+            res.end()
         })
     })
-    res.end()
 })
 
 module.exports = router

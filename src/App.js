@@ -48,16 +48,16 @@ class App extends Component {
 
   }
  
-rentMovie = id =>{
-  let movies = [...this.state.movies]
-  let rentedMovie = movies.find(m => m.id === id)
-  rentedMovie.isRented = !rentedMovie.isRented
-  let budget = this.state.budget - 3  
-  this.setState({
-  movies, budget
-})
-console.log('renting')
-}
+// rentMovie = id =>{
+//   let movies = [...this.state.movies]
+//   let rentedMovie = movies.find(m => m.id === id)
+//   rentedMovie.isRented = !rentedMovie.isRented
+//   let budget = this.state.budget - 3  
+//   this.setState({
+//   movies, budget
+// })
+// console.log('renting')
+// }
 
 searchMovie = (event) => {
   let searchValue = event.target.value
@@ -72,9 +72,11 @@ newFav = async movie => {
   })
 }
 deleteFav = async movie => {
-  let data = await axios.delete("http://localhost:5000/movie/:title", movie, function(){})
+  console.log(movie)
+  let data = await axios.delete(`http://localhost:5000/movie/${movie.title}`)
+  let favs = await axios.get("http://localhost:5000/movies", function(){})
   this.setState({
-    favourites: data.data
+    favourites: favs.data
   })
 }
 
