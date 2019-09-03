@@ -10,7 +10,7 @@ var moment = require('moment');
 
 
 
-class MovieDetail extends Component {
+class TvDetail extends Component {
 
 
     render() {
@@ -20,24 +20,24 @@ class MovieDetail extends Component {
               secondary: { main: '#c0392b' }, 
             },
           });
-    const title = this.props.match.params.title
-    const movie = this.props.movies.find(m => m.title === title)
+    const name = this.props.match.params.name
+    const tv = this.props.tv.find(m => m.name === name)
     // console.log(id)
-    console.log(movie)
+    console.log(tv)
  
         return (
         <div id="movie">
-            <h3>{movie.title}({moment(movie.release_date).format('Do of MMMM, YYYY')})</h3> 
+            <h3>{tv.name}({moment(tv.first_air_date).format('Do of MMMM, YYYY')})</h3> 
             <div className='descPic'>
-                <img className="imagen" src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="" />
-                <span className='description'>{movie.overview}</span>
+                <img className="imagen" src={`https://image.tmdb.org/t/p/w500/${tv.poster_path}`} alt="" />
+                <span className='description'>{tv.overview}</span>
             </div>
             <ThemeProvider theme={theme}>
-            <span className='backb'><Link style={{ textDecoration: 'none' }} to="/movies"><Button variant="outlined" color="secondary" >Back</Button></Link></span>
+            <span className='backb'><Link style={{ textDecoration: 'none' }} to="/tv"><Button variant="outlined" color="secondary" >Back</Button></Link></span>
             </ThemeProvider>
         </div>
         )
     }
 }
 
-export default MovieDetail;
+export default TvDetail;

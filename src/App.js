@@ -3,8 +3,10 @@ import './App.css';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Landing from './components/Landing';
 import Catalog from './components/Catalog';
+import TvShows from './components/TvShows';
 import Favourites from './components/Favourites';
 import MovieDetail from './components/movieDetail';
+import TvDetail from './components/TvDetail';
 import FavouriteDetail from './components/FavouriteDetail';
 import axios from 'axios'
 import logo from './style/twitter_header_photo_1.png';
@@ -20,6 +22,7 @@ class App extends Component {
     this.state = {
       movies:[],
       favourites:[],
+      tvShows:[],
       input: ""
     }
   } 
@@ -35,7 +38,14 @@ class App extends Component {
     this.setState({
       movies: results
     });
- 
+
+    let tvShows = await axios.get("https://api.themoviedb.org/3/discover/tv?api_key=c703c8747b59946dcb55745504d255fd&with_genres=27", function(){}) 
+    this.setState({
+      tvShows: tvShows.data.results
+    })
+    console.log(this.state.tvShows)
+
+
     let favs = await axios.get("http://localhost:5000/movies", function(){})
     this.setState({
       favourites: favs.data
@@ -81,7 +91,8 @@ render () {
       <div className='main'>
       <ThemeProvider theme={theme}>
       <Link style={{ textDecoration: 'none' }} to="/"><Button size="large" color="secondary" >Home</Button></Link>
-      <Link style={{ textDecoration: 'none' }} to="/catalog"><Button size="large" color="secondary" >Catalog</Button></Link>
+      <Link style={{ textDecoration: 'none' }} to="/movies"><Button size="large" color="secondary" >Movies</Button></Link>
+      <Link style={{ textDecoration: 'none' }} to="/tv"><Button size="large" color="secondary" >Tv Shows</Button></Link>
       <Link style={{ textDecoration: 'none' }} to="/favourites"><Button size="large" color="secondary" >Favourites</Button></Link>
       </ThemeProvider>
 
@@ -89,9 +100,11 @@ render () {
         <img src={logo} className='logo' alt=''></img>
       </div>
       <Route path="/" exact component={Landing} />
-      <Route exact path="/catalog" render={() => <Catalog movies={this.state.movies}  input={this.state.input} searchMovie={this.searchMovie} favourites={this.state.favourites} newFav={this.newFav} />} />
+      <Route exact path="/movies" render={() => <Catalog movies={this.state.movies}  input={this.state.input} searchMovie={this.searchMovie} favourites={this.state.favourites} newFav={this.newFav} />} />
+      <Route exact path="/tv" render={() => <TvShows tv={this.state.tvShows} input={this.state.input} searchMovie={this.searchMovie} favourites={this.state.favourites} newFav={this.newFav} />} />
       <Route exact path="/favourites" render={() => <Favourites favourites={this.state.favourites}  input={this.state.input} searchMovie={this.searchMovie} deleteFav={this.deleteFav}  />} />
       <Route path="/movies/:title" exact render={({ match }) =>  <MovieDetail  match={match} movies={this.state.movies}  />}/>
+      <Route path="/tv/:name" exact render={({ match }) =>  <TvDetail  match={match} tv={this.state.tvShows} />}/>
       <Route path="/favourites/:title" exact render={({ match }) =>  <FavouriteDetail  match={match} favourites={this.state.favourites}  />}/>
     </div>
     </Router>
