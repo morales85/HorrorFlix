@@ -3,13 +3,15 @@ import './App.css';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Landing from './components/Landing';
 import Catalog from './components/Catalog';
+import New from './components/New';
 import TvShows from './components/TvShows';
 import Favourites from './components/Favourites';
 import MovieDetail from './components/movieDetail';
+import NewMovieDetail from './components/NewMovieDetail';
 import TvDetail from './components/TvDetail';
 import FavouriteDetail from './components/FavouriteDetail';
 import axios from 'axios'
-import logo from './style/twitter_header_photo_1.png';
+import logo from './style/logo_transparent.jpg';
 import Button from '@material-ui/core/Button';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
@@ -24,6 +26,7 @@ class App extends Component {
       favourites:[],
       tvShows:[],
       favouritesTv:[],
+      newMovies:[],
       input: ""
     }
   } 
@@ -44,8 +47,16 @@ class App extends Component {
     this.setState({
       tvShows: tvShows.data.results
     })
-    // console.log(this.state.tvShows)
 
+    let newMovies = await axios.get("https://api.themoviedb.org/3/discover/movie?api_key=c703c8747b59946dcb55745504d255fd&language=en-US&sort_by=release_date.desc&include_adult=false&include_video=true&page=1&with_genres=27&primary_release_date.gte=2019-08-01&primary_release_date.lte=2019-09-03", function(){}) 
+    let newMovies2 = await axios.get("https://api.themoviedb.org/3/discover/movie?api_key=c703c8747b59946dcb55745504d255fd&language=en-US&sort_by=release_date.desc&include_adult=false&include_video=true&page=2&with_genres=27&primary_release_date.gte=2019-08-01&primary_release_date.lte=2019-09-03", function(){}) 
+    let newMovies3 = await axios.get("https://api.themoviedb.org/3/discover/movie?api_key=c703c8747b59946dcb55745504d255fd&language=en-US&sort_by=release_date.desc&include_adult=false&include_video=true&page=3&with_genres=27&primary_release_date.gte=2019-08-01&primary_release_date.lte=2019-09-03", function(){}) 
+    let newMovies4 = await axios.get("https://api.themoviedb.org/3/discover/movie?api_key=c703c8747b59946dcb55745504d255fd&language=en-US&sort_by=release_date.desc&include_adult=false&include_video=true&page=4&with_genres=27&primary_release_date.gte=2019-08-01&primary_release_date.lte=2019-09-03", function(){}) 
+    let allNew = newMovies.data.results.concat(newMovies2.data.results.concat(newMovies3.data.results).concat(newMovies4.data.results))
+    this.setState({
+      newMovies: allNew
+    })
+    console.log(this.state.newMovies)
 
     let favs = await axios.get("http://localhost:5000/movies", function(){})
     this.setState({
@@ -104,6 +115,7 @@ render () {
       <ThemeProvider theme={theme}>
       <Link style={{ textDecoration: 'none' }} to="/"><Button size="large" color="secondary" >Home</Button></Link>
       <Link style={{ textDecoration: 'none' }} to="/movies"><Button size="large" color="secondary" >Movies</Button></Link>
+      <Link style={{ textDecoration: 'none' }} to="/new"><Button size="large" color="secondary" >New Movies!</Button></Link>
       <Link style={{ textDecoration: 'none' }} to="/tv"><Button size="large" color="secondary" >Tv Shows</Button></Link>
       <Link style={{ textDecoration: 'none' }} to="/favourites"><Button size="large" color="secondary" >Favourites</Button></Link>
       </ThemeProvider>
@@ -113,13 +125,11 @@ render () {
       </div>
       <Route path="/" exact component={Landing} />
       <Route exact path="/movies" render={() => <Catalog movies={this.state.movies}  input={this.state.input} searchMovie={this.searchMovie} favourites={this.state.favourites} newFav={this.newFav} />} />
+      <Route exact path="/new" render={() => <New newM={this.state.newMovies}  input={this.state.input} searchMovie={this.searchMovie} favourites={this.state.favourites} newFav={this.newFav} />} />
       <Route exact path="/tv" render={() => <TvShows tv={this.state.tvShows} input={this.state.input} searchMovie={this.searchMovie} favouritesTv={this.state.favouritesTv} newFav={this.newFavTv} />} />
-      
-      {/* <Route exact path="/favouritesM" render={() => <FavouritesMovies favourites={this.state.favourites}  input={this.state.input} searchMovie={this.searchMovie} deleteFav={this.deleteFav}  />} />
-      <Route exact path="/favouritesT" render={() => <FavouritesShows favourites={this.state.favouritesTv} input={this.state.input} searchMovie={this.searchMovie} deleteFav={this.deleteFav}  />} /> */}
-
       <Route exact path="/favourites" render={() => <Favourites favourites={this.state.favourites} favouritesTv={this.state.favouritesTv} input={this.state.input} searchMovie={this.searchMovie} deleteFav={this.deleteFav}  />} />
-      <Route path="/movies/:title" exact render={({ match }) =>  <MovieDetail  match={match} movies={this.state.movies}  />}/>
+      <Route path="/movies/:title" exact render={({ match }) =>  <MovieDetail match={match} movies={this.state.movies}  />}/>
+      <Route path="/new/:title" exact render={({ match }) =>  <NewMovieDetail match={match} newM={this.state.newMovies}  />}/>
       <Route path="/tv/:name" exact render={({ match }) =>  <TvDetail  match={match} tv={this.state.tvShows} />}/>
       <Route path="/favourites/:title" exact render={({ match }) =>  <FavouriteDetail  match={match} favourites={this.state.favourites}  />}/>
     </div>

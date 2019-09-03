@@ -4,7 +4,6 @@ body{
     font-family: 'Montserrat', sans-serif;
 }
 
-
 #home-container{
 margin-top: 10vh;
 }
@@ -12,7 +11,11 @@ margin-top: 10vh;
     color: #c0392b;
     display: grid;
     flex-direction: column;
-margin-left: 78vh;
+    margin-left: 78vh;
+}
+
+.users{
+    display: flex
 }
 #rafa{
     display: inline-block;
@@ -25,9 +28,9 @@ margin-left: 78vh;
     background-repeat: no-repeat;
     background-color: #c0392b;
     color: #c0392b;
-    margin-left:44vh;
+    cursor: pointer;
+    margin-left:35vh;
     margin-top: 9vh;
-    text-align: center;
     text-decoration: none;
     -webkit-box-shadow: 0px 0px 17px 7px rgba(175, 31, 31, 0.73);
     -moz-box-shadow: 0px 0px 17px 7px rgba(175, 31, 31, 0.73);
@@ -35,36 +38,38 @@ margin-left: 78vh;
 
 }
 .rafa{
-    display: inline-flex;
+    display: flex;
 }
 .aya{
-    display: inline-flex;
+    display: flex;
+    margin-left: 20vh;
 }
 .toto{
-    display: inline-flex
+    display: flex;
+    margin-left: 20vh;
 }
 .rafaText{
-    margin-left: 55vh;
     margin-top: 2vh;
+    margin-left: 46vh;
     color: #c0392b;
     font-weight: bolder;
     font-size: 25px;
 
 }
 .ayaText{
-    margin-left: 24vh;
     margin-top: 2vh;
     color: #c0392b;
     font-weight: bolder;
     font-size: 25px;
+    margin-left: 14vh;
 
 }
 .totoText{
-    margin-left: 23vh;
     margin-top: 2vh;
     color: #c0392b;
     font-weight: bolder;
     font-size: 25px;
+    margin-left: 12vh;
 
 }
 #rafa:hover{
@@ -80,9 +85,9 @@ margin-left: 78vh;
     background-size: 100%;
     background-position: center; 
     background-repeat: no-repeat;
-    margin-left: 90px;
+    margin-left: 9px;
     margin-top: 9vh;
-    text-align: center;
+    cursor: pointer;
     -webkit-box-shadow: 0px 0px 17px 7px rgba(175, 31, 31, 0.73);
     -moz-box-shadow: 0px 0px 17px 7px rgba(175, 31, 31, 0.73);
     box-shadow: 0px 0px 17px 7px rgba(175, 31, 31, 0.73);
@@ -99,7 +104,8 @@ margin-left: 78vh;
     background-size: 100%;
     background-position: center; 
     background-repeat: no-repeat;
-    margin-left: 90px;
+    margin-left: 9px;
+    cursor: pointer;
     margin-top: 9vh;
     text-align: center;
     -webkit-box-shadow: 0px 0px 17px 7px rgba(175, 31, 31, 0.73);

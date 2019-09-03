@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
-import '../style/home.css'
+import '../style/home.css';
 
 class Landing extends Component {
 
@@ -14,19 +14,19 @@ class Landing extends Component {
                 </div>
                 <div className='users'>
                     <div className='rafa'>
-                        <Link style={{ textDecoration: 'none' }} to='/catalog' >
+                        <Link style={{ textDecoration: 'none' }} to='/movies' >
                             <div id="rafa" className="rafa"></div>
                             <div className='rafaText'>RAFA</div>
                         </Link>
                     </div>
                     <div className='aya'>
-                    <Link style={{ textDecoration: 'none' }} to='/catalog'>
+                    <Link style={{ textDecoration: 'none' }} to='/movies'>
                         <div id="aya" className="aya"></div>
                         <div className='ayaText'>AYA</div>
                     </Link>
                     </div>
                     <div className='toto'>
-                    <Link style={{ textDecoration: 'none' }} to='/catalog'>
+                    <Link style={{ textDecoration: 'none' }} to='/movies'>
                         <div className="toto" id="toto"></div>
                         <div className='totoText'>TOTO</div>
                     </Link>
