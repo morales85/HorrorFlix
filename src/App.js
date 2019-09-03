@@ -23,6 +23,7 @@ class App extends Component {
       movies:[],
       favourites:[],
       tvShows:[],
+      favouritesTv:[],
       input: ""
     }
   } 
@@ -34,7 +35,7 @@ class App extends Component {
     let data5 = await axios.get("https://api.themoviedb.org/3/discover/movie?api_key=c703c8747b59946dcb55745504d255fd&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=true&page=5&with_genres=27", function(){})
     let data6 = await axios.get("https://api.themoviedb.org/3/discover/movie?api_key=c703c8747b59946dcb55745504d255fd&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=true&page=6&with_genres=27", function(){})
     let results = data.data.results.concat(data2.data.results.concat(data3.data.results).concat(data4.data.results).concat(data5.data.results).concat(data6.data.results))
-    console.log(results)
+    // console.log(results)
     this.setState({
       movies: results
     });
@@ -43,14 +44,15 @@ class App extends Component {
     this.setState({
       tvShows: tvShows.data.results
     })
-    console.log(this.state.tvShows)
+    // console.log(this.state.tvShows)
 
 
     let favs = await axios.get("http://localhost:5000/movies", function(){})
     this.setState({
       favourites: favs.data
     })
-    // console.log(this.state.favourites)
+
+
 
   }
  
@@ -67,8 +69,16 @@ newFav = async movie => {
     favourites: data.data
   })
 }
+
+newFavTv = async show => {
+  let data = await axios.post("http://localhost:5000/show", show, function(){})
+  this.setState({
+    favouritesTv: data.data
+  })
+}
+
 deleteFav = async movie => {
-  console.log(movie)
+  // console.log(movie)
   let data = await axios.delete(`http://localhost:5000/movie/${movie.title}`)
   let favs = await axios.get("http://localhost:5000/movies", function(){})
   this.setState({
@@ -76,8 +86,11 @@ deleteFav = async movie => {
   })
 }
 
-
 render () {
+  // console.log(this.state.favourites)
+  // console.log(this.state.favouritesTv)
+
+
   const theme = createMuiTheme({
     palette: {
       primary: { main: '#11cb5f' }, 
@@ -85,7 +98,6 @@ render () {
     },
   });
   return (
-
     <Router>
     <div className="App">
       <div className='main'>
@@ -101,8 +113,12 @@ render () {
       </div>
       <Route path="/" exact component={Landing} />
       <Route exact path="/movies" render={() => <Catalog movies={this.state.movies}  input={this.state.input} searchMovie={this.searchMovie} favourites={this.state.favourites} newFav={this.newFav} />} />
-      <Route exact path="/tv" render={() => <TvShows tv={this.state.tvShows} input={this.state.input} searchMovie={this.searchMovie} favourites={this.state.favourites} newFav={this.newFav} />} />
-      <Route exact path="/favourites" render={() => <Favourites favourites={this.state.favourites}  input={this.state.input} searchMovie={this.searchMovie} deleteFav={this.deleteFav}  />} />
+      <Route exact path="/tv" render={() => <TvShows tv={this.state.tvShows} input={this.state.input} searchMovie={this.searchMovie} favouritesTv={this.state.favouritesTv} newFav={this.newFavTv} />} />
+      
+      {/* <Route exact path="/favouritesM" render={() => <FavouritesMovies favourites={this.state.favourites}  input={this.state.input} searchMovie={this.searchMovie} deleteFav={this.deleteFav}  />} />
+      <Route exact path="/favouritesT" render={() => <FavouritesShows favourites={this.state.favouritesTv} input={this.state.input} searchMovie={this.searchMovie} deleteFav={this.deleteFav}  />} /> */}
+
+      <Route exact path="/favourites" render={() => <Favourites favourites={this.state.favourites} favouritesTv={this.state.favouritesTv} input={this.state.input} searchMovie={this.searchMovie} deleteFav={this.deleteFav}  />} />
       <Route path="/movies/:title" exact render={({ match }) =>  <MovieDetail  match={match} movies={this.state.movies}  />}/>
       <Route path="/tv/:name" exact render={({ match }) =>  <TvDetail  match={match} tv={this.state.tvShows} />}/>
       <Route path="/favourites/:title" exact render={({ match }) =>  <FavouriteDetail  match={match} favourites={this.state.favourites}  />}/>

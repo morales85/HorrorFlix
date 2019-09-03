@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import Show from "./Show";
-import Snack from "./Snacks";
-import Button from '@material-ui/core/Button';
 import '../style/catalog.css'
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
@@ -78,7 +76,7 @@ class TvShows extends Component {
     let tv = this.props.tv
     let input = this.props.input.toLowerCase()
     console.log(tv)
-  // console.log(this.props.favourites)
+    console.log(this.props.favouritesTv)
   const theme = createMuiTheme({
     palette: {
       primary: { main: '#11cb5f' }, 

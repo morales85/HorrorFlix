@@ -3,7 +3,7 @@ import Favourite from "./Favourite";
 import '../style/catalog.css'
 
 
-class Favourites extends Component {
+class FavouritesShows extends Component {
   constructor(){
     super()
     this.state ={
@@ -37,18 +37,15 @@ class Favourites extends Component {
       
   render() {
     let favourites = this.props.favourites
-    console.log(favourites)
-    // let favouritesTV = this.props.favouritesTv
-    // console.log(favouritesTV)
-
     let input = this.props.input.toLowerCase()
+  // console.log(favourites)
     return (
 
         <div>
             <div className='menu'>
                 <input name="input" type="text" placeholder="Find a movie!" value={this.props.input} onChange={this.searchMovie} />
           </div>
-                <h2>Favourites:</h2>
+                <h2>Favourite Shows:</h2>
                 {favourites.length >0 ? favourites.filter(m => m.title.toLowerCase().includes(input)).slice((this.state.page  * 16), (this.state.page * 16) + 16).map(m => <Favourite key={m.id} favourite={m} rentMovie={this.props.rentMovie} deleteFav={this.props.deleteFav}   />) : null}
         </div>
 
@@ -56,4 +53,4 @@ class Favourites extends Component {
   }
 }
 
-export default Favourites;
+export default FavouritesShows;

@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import Movie from "./Movie";
-import Snack from "./Snacks";
-
 import Button from '@material-ui/core/Button';
 import '../style/catalog.css'
 import { createMuiTheme } from '@material-ui/core/styles';

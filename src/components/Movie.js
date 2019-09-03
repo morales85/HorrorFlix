@@ -57,7 +57,7 @@ class Movie extends Component {
       },
     });
     let movie = this.props.movie
-    // console.log(movie)
+    // console.log(movie.id)
     const { vertical, horizontal, open } = this.state;
 
     return (
