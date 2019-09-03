@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 const api = require('./server/route/api')
 const mongoose = require('mongoose')
 mongoose.connect("mongodb://localhost/reflixFS", { useNewUrlParser: true })
-
+ 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 

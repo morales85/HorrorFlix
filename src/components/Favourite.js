@@ -3,19 +3,17 @@ import { Link } from "react-router-dom";
 // import MovieDetail from './MovieDetail';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
+import Snackbar from '@material-ui/core/Snackbar';
 import Fab from '@material-ui/core/Fab';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 class Favourite extends Component {
 
-  rentMovie = () =>{
-    this.props.rentMovie(this.props.movie.id)
-  }
 
   deleteFav = () => {
     let deleteFav = this.props.favourite
     this.props.deleteFav(deleteFav)
-    console.log(this.props.favourite)
+    // console.log(this.props.favourite)
     }
 
   render() {
@@ -29,7 +27,6 @@ class Favourite extends Component {
     // console.log(favourite)
 
     return (
-      
         <div className='movies'>
         <Link to={`/favourites/${favourite.title}`}>
             <img className="img" src={`https://image.tmdb.org/t/p/w500/${favourite.poster_path}`} alt="" />

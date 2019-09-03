@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import Movie from "./Movie";
+import Snack from "./Snacks";
+
 import Button from '@material-ui/core/Button';
 import '../style/catalog.css'
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
-
-
 
 
 class Catalog extends Component {
@@ -13,9 +13,14 @@ class Catalog extends Component {
     super()
     this.state ={
       page:0,
+      open: false,
+      vertical: 'top',
+      horizontal: 'center',
 
     }
   }
+
+  
     searchMovie = (e) => {
         this.props.searchMovie(e)
       }
@@ -71,8 +76,6 @@ class Catalog extends Component {
           this.setState({})
         }
 
-
-
   render() {
     let movies = this.props.movies
     let input = this.props.input.toLowerCase()
@@ -89,7 +92,7 @@ class Catalog extends Component {
             <div className='menu'>
                 <input name="input" type="text" placeholder="Find a movie!" value={this.props.input} onChange={this.searchMovie} />
 
-
+{/* <Snack /> */}
           </div>
         <div className="movies">
                 <h2>Catalog:</h2>
@@ -98,7 +101,7 @@ class Catalog extends Component {
                   <span className='sort' onClick={this.titleZ}>▲</span>
                   <span className='sort' onClick={this.titleA}>▼</span>
                 </div>
-                {movies.length >0 ? movies.filter(m => m.title.toLowerCase().includes(input)).slice((this.state.page  * 16), (this.state.page * 16) + 16).map(m => <Movie key={m.id} movie={m} favourites={this.props.favourites} rentMovie={this.props.rentMovie} newFav={this.props.newFav}   />) : null}
+                {movies.length >0 ? movies.filter(m => m.title.toLowerCase().includes(input)).slice((this.state.page  * 16), (this.state.page * 16) + 16).map(m => <Movie key={m.id} movie={m} favourites={this.props.favourites}  newFav={this.props.newFav}   />) : null}
         </div>
         <div className="paging">
         <ThemeProvider theme={theme}>
@@ -111,5 +114,5 @@ class Catalog extends Component {
     );
   }
 }
-
+ 
 export default Catalog;

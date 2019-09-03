@@ -8,7 +8,7 @@ router.get('/movies', function(req, res){
         res.send(movies)
     })
 })
-
+ 
 router.post('/movie', async function(req, res){
     let newMovie = new Movie(req.body)
     await newMovie.save()

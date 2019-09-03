@@ -24,9 +24,9 @@ class MovieDetail extends Component {
     const movie = this.props.movies.find(m => m.title === title)
     // console.log(id)
     console.log(movie)
-
+ 
         return (
-                        <div id="movie">
+        <div id="movie">
             <h3>{movie.title}({moment(movie.release_date).format('Do of MMMM, YYYY')})</h3> 
             <div className='descPic'>
                 <img className="imagen" src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="" />
@@ -35,7 +35,7 @@ class MovieDetail extends Component {
             <ThemeProvider theme={theme}>
             <span className='backb'><Link style={{ textDecoration: 'none' }} to="/catalog"><Button variant="outlined" color="secondary" >Back</Button></Link></span>
             </ThemeProvider>
-            </div>
+        </div>
         )
     }
 }

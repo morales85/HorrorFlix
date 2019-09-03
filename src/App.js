@@ -13,16 +13,12 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 
 
-
-
-
 class App extends Component {
   constructor() {
     super()
     
     this.state = {
       movies:[],
-      // allmovies:[],
       favourites:[],
       input: ""
     }
@@ -39,7 +35,7 @@ class App extends Component {
     this.setState({
       movies: results
     });
-
+ 
     let favs = await axios.get("http://localhost:5000/movies", function(){})
     this.setState({
       favourites: favs.data
@@ -48,16 +44,6 @@ class App extends Component {
 
   }
  
-// rentMovie = id =>{
-//   let movies = [...this.state.movies]
-//   let rentedMovie = movies.find(m => m.id === id)
-//   rentedMovie.isRented = !rentedMovie.isRented
-//   let budget = this.state.budget - 3  
-//   this.setState({
-//   movies, budget
-// })
-// console.log('renting')
-// }
 
 searchMovie = (event) => {
   let searchValue = event.target.value
@@ -84,8 +70,8 @@ deleteFav = async movie => {
 render () {
   const theme = createMuiTheme({
     palette: {
-      primary: { main: '#11cb5f' }, // Purple and green play nicely together.
-      secondary: { main: '#c0392b' }, // This is just green.A700 as hex.
+      primary: { main: '#11cb5f' }, 
+      secondary: { main: '#c0392b' },
     },
   });
   return (
@@ -99,22 +85,14 @@ render () {
       <Link style={{ textDecoration: 'none' }} to="/favourites"><Button size="large" color="secondary" >Favourites</Button></Link>
       </ThemeProvider>
 
-        {/* <span className='home' ><Link style={{ textDecoration: 'none' }} to="/">Home</Link></span> */}
-        {/* <div className="dropdown"> */}
-        {/* <span className='catalog'><Link style={{ textDecoration: 'none' }} to="/catalog">Catalog</Link></span> */}
-        {/* <span className='catalog'><Link style={{ textDecoration: 'none' }} to="/favourites">Favourites</Link></span> */}
-          {/* <div className="dropdown-content">
-            <Link style={{ textDecoration: 'none' }} to="/catalog">Horror</Link>
-          </div> */}
-        {/* </div> */}
-        {/* <span className='logo'>HORRORFLIX</span> */}
+
         <img src={logo} className='logo' alt=''></img>
       </div>
       <Route path="/" exact component={Landing} />
-      <Route exact path="/catalog" render={() => <Catalog movies={this.state.movies} rentMovie={this.rentMovie} input={this.state.input} searchMovie={this.searchMovie} favourites={this.state.favourites} newFav={this.newFav} />} />
-      <Route exact path="/favourites" render={() => <Favourites favourites={this.state.favourites} rentMovie={this.rentMovie} input={this.state.input} searchMovie={this.searchMovie} deleteFav={this.deleteFav}  />} />
-      <Route path="/movies/:title" exact render={({ match }) =>  <MovieDetail rentMovie={this.rentMovie} match={match} movies={this.state.movies}  />}/>
-      <Route path="/favourites/:title" exact render={({ match }) =>  <FavouriteDetail rentMovie={this.rentMovie} match={match} favourites={this.state.favourites}  />}/>
+      <Route exact path="/catalog" render={() => <Catalog movies={this.state.movies}  input={this.state.input} searchMovie={this.searchMovie} favourites={this.state.favourites} newFav={this.newFav} />} />
+      <Route exact path="/favourites" render={() => <Favourites favourites={this.state.favourites}  input={this.state.input} searchMovie={this.searchMovie} deleteFav={this.deleteFav}  />} />
+      <Route path="/movies/:title" exact render={({ match }) =>  <MovieDetail  match={match} movies={this.state.movies}  />}/>
+      <Route path="/favourites/:title" exact render={({ match }) =>  <FavouriteDetail  match={match} favourites={this.state.favourites}  />}/>
     </div>
     </Router>
   )

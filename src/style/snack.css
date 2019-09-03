@@ -1,0 +1,14 @@
+.MuiSnackbarContent-root{
+    background-color: #852b21 !important;
+}
+
+.MuiSnackbar-root{
+    position: fixed !important;
+    bottom: 5px !important;
+}
+#message-id{
+    font-family: 'Montserrat', sans-serif;
+    color: black;
+    justify-content: center;
+    font-size: 2.5vh;
+}

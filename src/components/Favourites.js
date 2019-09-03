@@ -38,7 +38,7 @@ class Favourites extends Component {
   render() {
     let favourites = this.props.favourites
     let input = this.props.input.toLowerCase()
-  console.log(favourites)
+  // console.log(favourites)
     return (
 
         <div>

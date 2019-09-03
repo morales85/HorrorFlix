@@ -36,7 +36,7 @@ class FavouriteDetail extends Component {
             </ThemeProvider>
             </div>
         )
-    }
+    } 
 }
 
 export default FavouriteDetail;
