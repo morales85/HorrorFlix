@@ -14,7 +14,7 @@ import '../style/snack.css'
 
 
   
-class Movie extends Component {
+class NewM extends Component {
   constructor(){
     super()
     this.state ={
@@ -66,6 +66,10 @@ class Movie extends Component {
     // console.log(movie.id)
     const { vertical, horizontal, open } = this.state;
 
+    let moviePoster = movie.poster_path === null ? 
+    'http://www.theprintworks.com/wp-content/themes/psBella/assets/img/film-poster-placeholder.png' 
+    : `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+
     return (
       
         <div className='movies' >
@@ -80,8 +84,8 @@ class Movie extends Component {
         }}
         message={<span id="message-id">{movie.title} added to your favourites.</span>}
       />
-        <Link to={`/movies/${movie.title}`}>
-            <img className="img"  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} onError={this.alt} />
+        <Link to={`/new/${movie.title}`}>
+            <img className="img"  src={moviePoster} alt='movie poster' />
         </Link>
         <ThemeProvider theme={theme}>
           {/* <Snacks /> */}
@@ -93,4 +97,4 @@ class Movie extends Component {
   }
 }
 
-export default Movie
+export default NewM

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import YouTube from 'react-youtube';
-import { BrowserRouter as Route, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Button from '@material-ui/core/Button';
 import '../style/movie.css'
 import '../style/movieDetail.css'

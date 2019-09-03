@@ -1,40 +1,34 @@
 import React, { Component } from 'react'
 import { Link } from "react-router-dom";
-// import MovieDetail from './MovieDetail';
+// import showDetail from './showDetail';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import Snackbar from '@material-ui/core/Snackbar';
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
-import alt from '../style/alt.png';
-
-
-import '../style/snack.css'
-
+// import Fab from '@material-ui/core/Fab';
+// import AddIcon from '@material-ui/icons/Add';
 
 
   
-class Movie extends Component {
+class Show extends Component {
   constructor(){
     super()
     this.state ={
       open: false,
       vertical:'botom',
-      horizontal: 'center',
-      noPoster: 'http://www.theprintworks.com/wp-content/themes/psBella/assets/img/film-poster-placeholder.png'
+      horizontal: 'center'
     }
   }
 
   addFav = () => {
-    let titles = this.props.favourites.map(m => m.title)
-    let findMovie = titles.includes(this.props.movie.title)
-    // console.log(titles)
-    // console.log(this.props.movie.title)
-    // console.log(findMovie)
-    if(findMovie == false){
-      this.props.newFav(this.props.movie)
+    let names = this.props.favourites.map(m => m.name)
+    let findshow = names.includes(this.props.show.name)
+    // console.log(names)
+    // console.log(this.props.show.name)
+    // console.log(findshow)
+    if(findshow == false){
+      this.props.newFav(this.props.show)
     } else {
-      console.log('movie already in favourites')
+      console.log('show already in favourites')
     }
     }
     
@@ -62,8 +56,8 @@ class Movie extends Component {
         secondary: { main: '#c0392b' }, 
       },
     });
-    let movie = this.props.movie
-    // console.log(movie.id)
+    let show = this.props.show
+    // console.log(show)
     const { vertical, horizontal, open } = this.state;
 
     return (
@@ -78,14 +72,14 @@ class Movie extends Component {
         ContentProps={{
           'aria-describedby': 'message-id',
         }}
-        message={<span id="message-id">{movie.title} added to your favourites.</span>}
+        message={<span id="message-id">{show.name} added to your favourites.</span>}
       />
-        <Link to={`/movies/${movie.title}`}>
-            <img className="img"  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} onError={this.alt} />
+        <Link to={`/tv/${show.name}`}>
+            <img className="img"  src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`} alt="" />
         </Link>
         <ThemeProvider theme={theme}>
           {/* <Snacks /> */}
-        <span className='plus'><Fab size="small" color="secondary" aria-label="add" onClick={this.someFunc} ><AddIcon /></Fab></span>
+        {/* <span className='plus'><Fab size="small" color="secondary" aria-label="add" onClick={this.someFunc} ><AddIcon /></Fab></span> */}
         </ThemeProvider>
         </div>
 
@@ -93,4 +87,4 @@ class Movie extends Component {
   }
 }
 
-export default Movie
+export default Show

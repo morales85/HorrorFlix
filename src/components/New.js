@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import {Link } from 'react-router-dom'
 
-import Movie from "./Movie";
+import NewM from "./NewM";
 import Button from '@material-ui/core/Button';
 import '../style/catalog.css'
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 
 
-class Catalog extends Component {
+class New extends Component {
   constructor(){
     super()
     this.state ={
@@ -20,14 +20,13 @@ class Catalog extends Component {
     }
   }
 
-  
     searchMovie = (e) => {
         this.props.searchMovie(e)
       }
 
       nextPage = () => {
         window.scrollTo(0, 0)
-        if(this.state.page === 7){
+        if(this.state.page === 4){
           this.setState({
             page: 0
           })
@@ -41,7 +40,7 @@ class Catalog extends Component {
         window.scrollTo(0, 0)
         if(this.state.page === 0){
           this.setState({
-            page: 7
+            page: 4
           })
         } else
         this.setState({
@@ -49,12 +48,12 @@ class Catalog extends Component {
         })
       }
       titleA = () =>{
-        this.props.movies.sort(function(a,b){
-      
-            if (b.title > a.title) {
+        this.props.newM.sort(function(a,b){
+            
+            if (b.release_date > a.release_date) {
               return 1;
             }
-            if (b.title < a.title) {
+            if (b.release_date < a.release_date) {
               return -1;
             }
             return 0;
@@ -63,12 +62,12 @@ class Catalog extends Component {
       }   
 
         titleZ = () =>{
-          this.props.movies.sort(function(a,b){
+          this.props.newM.sort(function(a,b){
 
-              if (a.title > b.title) {
+              if (a.release_date > b.release_date) {
                 return 1;
               }
-              if (a.title < b.title) {
+              if (a.release_date < b.release_date) {
                 return -1;
               }
               return 0;
@@ -77,9 +76,9 @@ class Catalog extends Component {
         }
 
   render() {
-    let movies = this.props.movies
+    let newM = this.props.newM
     let input = this.props.input.toLowerCase()
-  // console.log(movies)
+//   console.log(newM)
   // console.log(this.props.favourites)
   const theme = createMuiTheme({
     palette: {
@@ -95,13 +94,13 @@ class Catalog extends Component {
 {/* <Snack /> */}
           </div>
         <div className="movies">
-                <h2>Movies:</h2>
+                <h2>New Movies:</h2>
                 <div className='sorting'>
-                  <span>Sort by title</span>
+                  <span>Sort by date</span>
                   <span className='sort' onClick={this.titleZ}>▲</span>
                   <span className='sort' onClick={this.titleA}>▼</span>
                 </div>
-                {movies.length >0 ? movies.filter(m => m.title.toLowerCase().includes(input)).slice((this.state.page  * 16), (this.state.page * 16) + 16).map(m => <Movie key={m.id} movie={m} favourites={this.props.favourites}  newFav={this.props.newFav}   />) : null}
+                {newM.length >0 ? newM.filter(m => m.title.toLowerCase().includes(input)).slice((this.state.page  * 16), (this.state.page * 16) + 16).map(m => <NewM key={m.id} movie={m} favourites={this.props.favourites}  newFav={this.props.newFav}   />) : null}
         </div>
         <div className="paging">
         <ThemeProvider theme={theme}>
@@ -115,4 +114,4 @@ class Catalog extends Component {
   }
 }
  
-export default Catalog;
+export default New;

@@ -1,14 +1,11 @@
 import React, { Component } from "react";
-import {Link } from 'react-router-dom'
-
-import Movie from "./Movie";
-import Button from '@material-ui/core/Button';
+import Show from "./Show";
 import '../style/catalog.css'
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 
 
-class Catalog extends Component {
+class TvShows extends Component {
   constructor(){
     super()
     this.state ={
@@ -19,7 +16,6 @@ class Catalog extends Component {
 
     }
   }
-
   
     searchMovie = (e) => {
         this.props.searchMovie(e)
@@ -48,13 +44,13 @@ class Catalog extends Component {
           page: this.state.page -1
         })
       }
-      titleA = () =>{
-        this.props.movies.sort(function(a,b){
+      nameA = () =>{
+        this.props.tv.sort(function(a,b){
       
-            if (b.title > a.title) {
+            if (b.name > a.name) {
               return 1;
             }
-            if (b.title < a.title) {
+            if (b.name < a.name) {
               return -1;
             }
             return 0;
@@ -62,13 +58,13 @@ class Catalog extends Component {
         this.setState({})
       }   
 
-        titleZ = () =>{
-          this.props.movies.sort(function(a,b){
+        nameZ = () =>{
+          this.props.tv.sort(function(a,b){
 
-              if (a.title > b.title) {
+              if (a.name > b.name) {
                 return 1;
               }
-              if (a.title < b.title) {
+              if (a.name < b.name) {
                 return -1;
               }
               return 0;
@@ -77,10 +73,10 @@ class Catalog extends Component {
         }
 
   render() {
-    let movies = this.props.movies
+    let tv = this.props.tv
     let input = this.props.input.toLowerCase()
-  // console.log(movies)
-  // console.log(this.props.favourites)
+    console.log(tv)
+    console.log(this.props.favouritesTv)
   const theme = createMuiTheme({
     palette: {
       primary: { main: '#11cb5f' }, 
@@ -90,29 +86,28 @@ class Catalog extends Component {
     return (
         <div>
             <div className='menu'>
-                <input name="input" type="text" placeholder="Find a movie!" value={this.props.input} onChange={this.searchMovie} />
+                <input name="input" type="text" placeholder="Find a show!" value={this.props.input} onChange={this.searchMovie} />
 
-{/* <Snack /> */}
           </div>
         <div className="movies">
-                <h2>Movies:</h2>
+                <h2>Catalog:</h2>
                 <div className='sorting'>
-                  <span>Sort by title</span>
-                  <span className='sort' onClick={this.titleZ}>▲</span>
-                  <span className='sort' onClick={this.titleA}>▼</span>
+                  <span>Sort by name</span>
+                  <span className='sort' onClick={this.nameZ}>▲</span>
+                  <span className='sort' onClick={this.nameA}>▼</span>
                 </div>
-                {movies.length >0 ? movies.filter(m => m.title.toLowerCase().includes(input)).slice((this.state.page  * 16), (this.state.page * 16) + 16).map(m => <Movie key={m.id} movie={m} favourites={this.props.favourites}  newFav={this.props.newFav}   />) : null}
+                {tv.length >0 ? tv.filter(m => m.name.toLowerCase().includes(input)).slice((this.state.page  * 16), (this.state.page * 16) + 16).map(m => <Show key={m.id} show={m} favourites={this.props.favourites}  newFav={this.props.newFav}   />) : null}
         </div>
         <div className="paging">
         <ThemeProvider theme={theme}>
-          <Button variant="outlined" color="secondary" className='pre' onClick='window.scrollTo( 0, 1000 )' onClick={this.previousPage}>Previous Page</Button>
-          <span className='numPages'>{this.state.page * 16} - {this.state.page * 16 + 16}</span> 
-          <Button variant="outlined" color="secondary" className='next' onClick={this.nextPage}>Next Page</Button>
-        </ThemeProvider>
+          {/* <Button variant="outlined" color="secondary" className='pre' onClick='window.scrollTo( 0, 1000 )' onClick={this.previousPage}>Previous Page</Button> */}
+          {/* <span className='numPages'>{this.state.page * 18} - {this.state.page * 16 + 16}</span>  */}
+          {/* <Button variant="outlined" color="secondary" className='next' onClick={this.nextPage}>Next Page</Button> */}
+          </ThemeProvider>
         </div>
         </div>
     );
   }
 }
  
-export default Catalog;
+export default TvShows;
