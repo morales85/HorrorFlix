@@ -99,7 +99,6 @@ newFavTv = async show => {
 }
 
 deleteFav = async movie => {
-  // console.log(movie)
   let data = await axios.delete(`/movie/${movie.title}`)
   let favs = await axios.get("/movies", function(){})
   this.setState({
