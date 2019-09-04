@@ -73,7 +73,7 @@ class App extends Component {
       upcoming: rightMovies
     })
 
-    let favs = await axios.get("heroku_hwcx5pxr/movies", function(){})
+    let favs = await axios.get("/movies", function(){})
     this.setState({
       favourites: favs.data
     })
@@ -86,22 +86,22 @@ searchMovie = (event) => {
 }
 
 newFav = async movie => {
-  let data = await axios.post("heroku_hwcx5pxr/movie", movie, function(){})
+  let data = await axios.post("/movie", movie, function(){})
   this.setState({
     favourites: data.data
   })
 }
 
 newFavTv = async show => {
-  let data = await axios.post("heroku_hwcx5pxr/show", show, function(){})
+  let data = await axios.post("/show", show, function(){})
   this.setState({
     favouritesTv: data.data
   })
 }
 
 deleteFav = async movie => {
-  let data = await axios.delete(`heroku_hwcx5pxr/movie/${movie.title}`)
-  let favs = await axios.get("heroku_hwcx5pxr/movies", function(){})
+  let data = await axios.delete(`/movie/${movie.title}`)
+  let favs = await axios.get("/movies", function(){})
   this.setState({
     favourites: favs.data
   })
