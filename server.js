@@ -3,7 +3,7 @@ const app = express()
 const bodyParser = require('body-parser')
 const api = require('./server/route/api')
 const mongoose = require('mongoose')
-mongoose.connect(process.env.MONGODB_URI||"mongodb://localhost/reflixFS", { useNewUrlParser: true })
+mongoose.connect(process.env.MONGODB_URI||'mongodb://localhost/reflixFS', { useNewUrlParser: true })
 
 app.use(express.static(path.join(__dirname, 'build')));
 
@@ -21,11 +21,10 @@ app.use(function (req, res, next) {
 
 app.use('/', api)
 
-
-const port = 5000
-
 app.get('*', function (req, res) {
     res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-app.listen(process.env.port || port);
+
+const PORT = 5000
+app.listen(process.env.PORT || PORT);
