@@ -78,7 +78,7 @@ class Upcoming extends Component {
   render() {
     let upcoming = this.props.upcoming
     let input = this.props.input.toLowerCase()
-//   console.log(upcoming)
+  // console.log(upcoming)
   // console.log(this.props.favourites)
   const theme = createMuiTheme({
     palette: {
