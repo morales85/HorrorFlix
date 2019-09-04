@@ -63,18 +63,19 @@ class App extends Component {
       newMovies: allNew
     })
 
-    let favs = await axios.get("/movies", function(){})
-    this.setState({
-      favourites: favs.data
-    })
 
-    let upcomingMovies = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=c703c8747b59946dcb55745504d255fd&language=en-US&include_adult=false&include_video=true&page=1&with_genres=27&release_date.gte=${today}`)
-    let upcomingMovies2 = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=c703c8747b59946dcb55745504d255fd&language=en-US&include_adult=false&include_video=true&page=2&with_genres=27&release_date.gte=${today}`)
-    let upcomingMovies3 = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=c703c8747b59946dcb55745504d255fd&language=en-US&include_adult=false&include_video=true&page=3&with_genres=27&release_date.gte=${today}`)
+
+    let upcomingMovies = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=c703c8747b59946dcb55745504d255fd&language=en-US&include_adult=false&include_video=true&page=1&with_genres=27&release_date.gte=${today}`, function(){})
+    let upcomingMovies2 = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=c703c8747b59946dcb55745504d255fd&language=en-US&include_adult=false&include_video=true&page=2&with_genres=27&release_date.gte=${today}`, function(){})
+    let upcomingMovies3 = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=c703c8747b59946dcb55745504d255fd&language=en-US&include_adult=false&include_video=true&page=3&with_genres=27&release_date.gte=${today}`, function(){})
     let rightMovies = upcomingMovies.data.results.concat(upcomingMovies2.data.results.concat(upcomingMovies3.data.results)).filter(m => m.release_date > today)
-    // let rightMovies = upcomingMovies.data.results.filter(m => m.release_date > today)
     this.setState({
       upcoming: rightMovies
+    })
+
+    let favs = await axios.get("heroku_hwcx5pxr/movies", function(){})
+    this.setState({
+      favourites: favs.data
     })
   }
  
@@ -85,22 +86,22 @@ searchMovie = (event) => {
 }
 
 newFav = async movie => {
-  let data = await axios.post("/movie", movie, function(){})
+  let data = await axios.post("heroku_hwcx5pxr/movie", movie, function(){})
   this.setState({
     favourites: data.data
   })
 }
 
 newFavTv = async show => {
-  let data = await axios.post("/show", show, function(){})
+  let data = await axios.post("heroku_hwcx5pxr/show", show, function(){})
   this.setState({
     favouritesTv: data.data
   })
 }
 
 deleteFav = async movie => {
-  let data = await axios.delete(`/movie/${movie.title}`)
-  let favs = await axios.get("/movies", function(){})
+  let data = await axios.delete(`heroku_hwcx5pxr/movie/${movie.title}`)
+  let favs = await axios.get("heroku_hwcx5pxr/movies", function(){})
   this.setState({
     favourites: favs.data
   })
