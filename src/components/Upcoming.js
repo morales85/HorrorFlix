@@ -24,29 +24,29 @@ class Upcoming extends Component {
         this.props.searchMovie(e)
       }
 
-    //   nextPage = () => {
-    //     window.scrollTo(0, 0)
-    //     if(this.state.page === 4){
-    //       this.setState({
-    //         page: 0
-    //       })
-    //     } else
-    //     this.setState({
-    //       page: this.state.page +1
-    //     })
-    //   }
+      nextPage = () => {
+        window.scrollTo(0, 0)
+        if(this.state.page === Math.floor(this.props.upcoming.length / 16)){
+          this.setState({
+            page: 0
+          })
+        } else
+        this.setState({
+          page: this.state.page +1
+        })
+      }
   
-    //   previousPage = () =>{
-    //     window.scrollTo(0, 0)
-    //     if(this.state.page === 0){
-    //       this.setState({
-    //         page: 4
-    //       })
-    //     } else
-    //     this.setState({
-    //       page: this.state.page -1
-    //     })
-    //   }
+      previousPage = () =>{
+        window.scrollTo(0, 0)
+        if(this.state.page === 0){
+          this.setState({
+            page: Math.floor(this.props.upcoming.length / 16)
+          })
+        } else
+        this.setState({
+          page: this.state.page -1
+        })
+      }
       titleA = () =>{
         this.props.upcoming.sort(function(a,b){
             
@@ -100,15 +100,15 @@ class Upcoming extends Component {
                   <span className='sort' onClick={this.titleZ}>▲</span>
                   <span className='sort' onClick={this.titleA}>▼</span>
                 </div>
-                {upcoming.length >0 ? upcoming.map(m => <NewU key={m.id} movie={m} favourites={this.props.favourites}  newFav={this.props.newFav}   />) : null}
+                {upcoming.length > 0 ? upcoming.filter(m => m.title.toLowerCase().includes(input)).slice((this.state.page  * 16), (this.state.page * 16) + 16).map(m => <NewU key={m.id} movie={m} favourites={this.props.favourites}  newFav={this.props.newFav}   />) : null}
         </div>
-        {/* <div className="paging">
+        <div className="paging">
         <ThemeProvider theme={theme}>
           <Button variant="outlined" color="secondary" className='pre' onClick='window.scrollTo( 0, 1000 )' onClick={this.previousPage}>Previous Page</Button>
           <span className='numPages'>{this.state.page * 16} - {this.state.page * 16 + 16}</span> 
           <Button variant="outlined" color="secondary" className='next' onClick={this.nextPage}>Next Page</Button>
         </ThemeProvider>
-        </div> */}
+        </div>
         </div>
     );
   }

@@ -7,6 +7,7 @@ const movieSchema = new Schema({
     poster_path: String,
     overview: String,
     release_date: String,
+    // rating: { type: Number, default: 0 }
 })
 
 const Movie = mongoose.model("Movie", movieSchema)

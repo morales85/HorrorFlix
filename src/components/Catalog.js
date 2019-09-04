@@ -26,7 +26,7 @@ class Catalog extends Component {
 
       nextPage = () => {
         window.scrollTo(0, 0)
-        if(this.state.page === 7){
+        if(this.state.page === Math.floor(this.props.movies.length / 16)){
           this.setState({
             page: 0
           })
@@ -40,7 +40,7 @@ class Catalog extends Component {
         window.scrollTo(0, 0)
         if(this.state.page === 0){
           this.setState({
-            page: 7
+            page: Math.floor(this.props.movies.length / 16)
           })
         } else
         this.setState({
@@ -76,6 +76,7 @@ class Catalog extends Component {
         }
 
   render() {
+    console.log(Math.floor(this.props.movies.length / 16) )
     let movies = this.props.movies
     let input = this.props.input.toLowerCase()
   // console.log(movies)

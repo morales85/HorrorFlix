@@ -26,7 +26,7 @@ class New extends Component {
 
       nextPage = () => {
         window.scrollTo(0, 0)
-        if(this.state.page === 4){
+        if(this.state.page === Math.floor(this.props.newM.length / 16)){
           this.setState({
             page: 0
           })
@@ -40,7 +40,7 @@ class New extends Component {
         window.scrollTo(0, 0)
         if(this.state.page === 0){
           this.setState({
-            page: 4
+            page: Math.floor(this.props.newM.length / 16)
           })
         } else
         this.setState({
