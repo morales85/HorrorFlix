@@ -3,7 +3,7 @@ const app = express()
 const bodyParser = require('body-parser')
 const api = require('./server/route/api')
 const mongoose = require('mongoose')
-mongoose.connect(process.env.MONGODB_URI||'mongodb://localhost/reflixFS')
+mongoose.connect(process.env.MONGODB_URI||'mongodb://localhost/heroku_hwcx5pxr')
 
 app.use(express.static(path.join(__dirname, 'build')));
 
