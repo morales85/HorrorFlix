@@ -132,8 +132,8 @@ render () {
       </div>
       <Route path="/" exact component={Landing} />
       <Route exact path="/movies" render={() => <Catalog movies={this.state.movies}  input={this.state.input} searchMovie={this.searchMovie} favourites={this.state.favourites} newFav={this.newFav} />} />
-      <Route exact path="/new" render={() => <New newM={this.state.newMovies}  input={this.state.input} searchMovie={this.searchMovie} favourites={this.state.favourites} newFav={this.newFav} />} />
-      <Route exact path="/upcoming" render={() => <Upcoming upcoming={this.state.upcoming}  input={this.state.input} searchMovie={this.searchMovie} favourites={this.state.favourites} newFav={this.newFav} />} />
+      <Route exact path="/new" render={() => <New newM={this.state.upcoming}  input={this.state.input} searchMovie={this.searchMovie} favourites={this.state.favourites} newFav={this.newFav} />} />
+      <Route exact path="/upcoming" render={() => <Upcoming upcoming={this.state.newMovies}  input={this.state.input} searchMovie={this.searchMovie} favourites={this.state.favourites} newFav={this.newFav} />} />
       <Route exact path="/tv" render={() => <TvShows tv={this.state.tvShows} input={this.state.input} searchMovie={this.searchMovie} favouritesTv={this.state.favouritesTv} newFav={this.newFavTv} />} />
       <Route exact path="/favourites" render={() => <Favourites favourites={this.state.favourites} favouritesTv={this.state.favouritesTv} input={this.state.input} searchMovie={this.searchMovie} deleteFav={this.deleteFav}  />} />
       <Route path="/movies/:title" exact render={({ match }) =>  <MovieDetail match={match} movies={this.state.movies}  />}/>
