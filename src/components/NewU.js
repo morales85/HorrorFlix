@@ -6,14 +6,14 @@ import { ThemeProvider } from '@material-ui/styles';
 import Snackbar from '@material-ui/core/Snackbar';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
-import alt from '../style/alt.png';
+
 import '../style/snack.css'
 var moment = require('moment');
 
 
 
   
-class NewM extends Component {
+class NewU extends Component {
   constructor(){
     super()
     this.state ={
@@ -83,9 +83,9 @@ class NewM extends Component {
         }}
         message={<span id="message-id">{movie.title} added to your favourites.</span>}
       />
-      <h5 className='title'>{movie.title}</h5> 
+        <h5 className='title'>{movie.title}</h5> 
         <h5 className='date'>({moment(movie.release_date).format('Do of MMMM, YYYY')})</h5>
-        <Link to={`/new/${movie.title}`}>
+        <Link to={`/upcoming/${movie.title}`}>
             <img className="img"  src={moviePoster} alt='movie poster' />
         </Link>
         <ThemeProvider theme={theme}>
@@ -98,4 +98,4 @@ class NewM extends Component {
   }
 }
 
-export default NewM
+export default NewU

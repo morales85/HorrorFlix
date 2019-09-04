@@ -1,14 +1,14 @@
 import React, { Component } from "react";
-import {Link } from 'react-router-dom'
+// import {Link } from 'react-router-dom'
+import NewU from "./NewU";
 
-import NewM from "./NewM";
 import Button from '@material-ui/core/Button';
 import '../style/catalog.css'
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 
 
-class New extends Component {
+class Upcoming extends Component {
   constructor(){
     super()
     this.state ={
@@ -24,31 +24,31 @@ class New extends Component {
         this.props.searchMovie(e)
       }
 
-      nextPage = () => {
-        window.scrollTo(0, 0)
-        if(this.state.page === 4){
-          this.setState({
-            page: 0
-          })
-        } else
-        this.setState({
-          page: this.state.page +1
-        })
-      }
+    //   nextPage = () => {
+    //     window.scrollTo(0, 0)
+    //     if(this.state.page === 4){
+    //       this.setState({
+    //         page: 0
+    //       })
+    //     } else
+    //     this.setState({
+    //       page: this.state.page +1
+    //     })
+    //   }
   
-      previousPage = () =>{
-        window.scrollTo(0, 0)
-        if(this.state.page === 0){
-          this.setState({
-            page: 4
-          })
-        } else
-        this.setState({
-          page: this.state.page -1
-        })
-      }
+    //   previousPage = () =>{
+    //     window.scrollTo(0, 0)
+    //     if(this.state.page === 0){
+    //       this.setState({
+    //         page: 4
+    //       })
+    //     } else
+    //     this.setState({
+    //       page: this.state.page -1
+    //     })
+    //   }
       titleA = () =>{
-        this.props.newM.sort(function(a,b){
+        this.props.upcoming.sort(function(a,b){
             
             if (b.release_date > a.release_date) {
               return 1;
@@ -62,7 +62,7 @@ class New extends Component {
       }   
 
         titleZ = () =>{
-          this.props.newM.sort(function(a,b){
+          this.props.upcoming.sort(function(a,b){
 
               if (a.release_date > b.release_date) {
                 return 1;
@@ -76,9 +76,9 @@ class New extends Component {
         }
 
   render() {
-    let newM = this.props.newM
+    let upcoming = this.props.upcoming
     let input = this.props.input.toLowerCase()
-//   console.log(newM)
+//   console.log(upcoming)
   // console.log(this.props.favourites)
   const theme = createMuiTheme({
     palette: {
@@ -94,24 +94,24 @@ class New extends Component {
 {/* <Snack /> */}
           </div>
         <div className="movies">
-                <h2>New movies:</h2>
+                <h2>Upcoming movies:</h2>
                 <div className='sorting'>
                   <span>Sort by date</span>
                   <span className='sort' onClick={this.titleZ}>▲</span>
                   <span className='sort' onClick={this.titleA}>▼</span>
                 </div>
-                {newM.length >0 ? newM.filter(m => m.title.toLowerCase().includes(input)).slice((this.state.page  * 16), (this.state.page * 16) + 16).map(m => <NewM key={m.id} movie={m} favourites={this.props.favourites}  newFav={this.props.newFav}   />) : null}
+                {upcoming.length >0 ? upcoming.map(m => <NewU key={m.id} movie={m} favourites={this.props.favourites}  newFav={this.props.newFav}   />) : null}
         </div>
-        <div className="paging">
+        {/* <div className="paging">
         <ThemeProvider theme={theme}>
           <Button variant="outlined" color="secondary" className='pre' onClick='window.scrollTo( 0, 1000 )' onClick={this.previousPage}>Previous Page</Button>
           <span className='numPages'>{this.state.page * 16} - {this.state.page * 16 + 16}</span> 
           <Button variant="outlined" color="secondary" className='next' onClick={this.nextPage}>Next Page</Button>
         </ThemeProvider>
-        </div>
+        </div> */}
         </div>
     );
   }
 }
  
-export default New;
+export default Upcoming;
