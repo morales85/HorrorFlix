@@ -90,7 +90,7 @@ class TvShows extends Component {
 
           </div>
         <div className="movies">
-                <h2>Catalog:</h2>
+                <h2>Tv Shows:</h2>
                 <div className='sorting'>
                   <span>Sort by name</span>
                   <span className='sort' onClick={this.nameZ}>▲</span>

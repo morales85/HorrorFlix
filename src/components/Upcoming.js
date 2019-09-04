@@ -1,14 +1,14 @@
 import React, { Component } from "react";
-import {Link } from 'react-router-dom'
+// import {Link } from 'react-router-dom'
+import NewU from "./NewU";
 
-import NewM from "./NewM";
 import Button from '@material-ui/core/Button';
 import '../style/catalog.css'
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 
 
-class New extends Component {
+class Upcoming extends Component {
   constructor(){
     super()
     this.state ={
@@ -26,7 +26,7 @@ class New extends Component {
 
       nextPage = () => {
         window.scrollTo(0, 0)
-        if(this.state.page === Math.floor(this.props.newM.length / 16)){
+        if(this.state.page === Math.floor(this.props.upcoming.length / 16)){
           this.setState({
             page: 0
           })
@@ -40,7 +40,7 @@ class New extends Component {
         window.scrollTo(0, 0)
         if(this.state.page === 0){
           this.setState({
-            page: Math.floor(this.props.newM.length / 16)
+            page: Math.floor(this.props.upcoming.length / 16)
           })
         } else
         this.setState({
@@ -48,7 +48,7 @@ class New extends Component {
         })
       }
       titleA = () =>{
-        this.props.newM.sort(function(a,b){
+        this.props.upcoming.sort(function(a,b){
             
             if (b.release_date > a.release_date) {
               return 1;
@@ -62,7 +62,7 @@ class New extends Component {
       }   
 
         titleZ = () =>{
-          this.props.newM.sort(function(a,b){
+          this.props.upcoming.sort(function(a,b){
 
               if (a.release_date > b.release_date) {
                 return 1;
@@ -76,9 +76,9 @@ class New extends Component {
         }
 
   render() {
-    let newM = this.props.newM
+    let upcoming = this.props.upcoming
     let input = this.props.input.toLowerCase()
-//   console.log(newM)
+//   console.log(upcoming)
   // console.log(this.props.favourites)
   const theme = createMuiTheme({
     palette: {
@@ -94,13 +94,13 @@ class New extends Component {
 {/* <Snack /> */}
           </div>
         <div className="movies">
-                <h2>New movies:</h2>
+                <h2>Upcoming movies:</h2>
                 <div className='sorting'>
                   <span>Sort by date</span>
                   <span className='sort' onClick={this.titleZ}>▲</span>
                   <span className='sort' onClick={this.titleA}>▼</span>
                 </div>
-                {newM.length >0 ? newM.filter(m => m.title.toLowerCase().includes(input)).slice((this.state.page  * 16), (this.state.page * 16) + 16).map(m => <NewM key={m.id} movie={m} favourites={this.props.favourites}  newFav={this.props.newFav}   />) : null}
+                {upcoming.length > 0 ? upcoming.filter(m => m.title.toLowerCase().includes(input)).slice((this.state.page  * 16), (this.state.page * 16) + 16).map(m => <NewU key={m.id} movie={m} favourites={this.props.favourites}  newFav={this.props.newFav}   />) : null}
         </div>
         <div className="paging">
         <ThemeProvider theme={theme}>
@@ -114,4 +114,4 @@ class New extends Component {
   }
 }
  
-export default New;
+export default Upcoming;

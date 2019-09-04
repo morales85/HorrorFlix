@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import {Link } from 'react-router-dom'
-
 import Movie from "./Movie";
 import Button from '@material-ui/core/Button';
 import '../style/catalog.css'
@@ -27,7 +26,7 @@ class Catalog extends Component {
 
       nextPage = () => {
         window.scrollTo(0, 0)
-        if(this.state.page === 7){
+        if(this.state.page === Math.floor(this.props.movies.length / 16)){
           this.setState({
             page: 0
           })
@@ -41,7 +40,7 @@ class Catalog extends Component {
         window.scrollTo(0, 0)
         if(this.state.page === 0){
           this.setState({
-            page: 7
+            page: Math.floor(this.props.movies.length / 16)
           })
         } else
         this.setState({
@@ -77,10 +76,13 @@ class Catalog extends Component {
         }
 
   render() {
+    console.log(Math.floor(this.props.movies.length / 16) )
     let movies = this.props.movies
     let input = this.props.input.toLowerCase()
   // console.log(movies)
   // console.log(this.props.favourites)
+
+
   const theme = createMuiTheme({
     palette: {
       primary: { main: '#11cb5f' }, 
@@ -95,7 +97,7 @@ class Catalog extends Component {
 {/* <Snack /> */}
           </div>
         <div className="movies">
-                <h2>Movies:</h2>
+                <h2>Popular movies:</h2>
                 <div className='sorting'>
                   <span>Sort by title</span>
                   <span className='sort' onClick={this.titleZ}>▲</span>

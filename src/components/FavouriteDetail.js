@@ -6,17 +6,31 @@ import '../style/movie.css'
 import '../style/movieDetail.css'
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
+import axios from 'axios'
+
 var moment = require('moment');
 
 
 class FavouriteDetail extends Component {
-
-
-    render() {
+  constructor(){
+    super()
+    this.state ={
+      currentMovie: ""
+    }
+  }
+  componentDidMount = async ()=>{
     const title = this.props.match.params.title
     const favourite = this.props.favourites.find(m => m.title === title)
-    // console.log(id)
-    console.log(favourite)
+    this.setState({
+      currentMovie: favourite.id
+    })
+    
+  }
+    render() {
+console.log(this.state.currentMovie)
+    const title = this.props.match.params.title
+    const favourite = this.props.favourites.find(m => m.title === title)
+
     const theme = createMuiTheme({
         palette: {
           primary: { main: '#11cb5f' }, 
@@ -27,6 +41,8 @@ class FavouriteDetail extends Component {
         return (
             <div id="movie">
             <h3>{favourite.title}({moment(favourite.release_date).format('Do of MMMM, YYYY')})</h3> 
+            <div><h3>Your rating:{favourite.rating}</h3></div>
+
             <div className='descPic'>
                 <img className="imagen" src={`https://image.tmdb.org/t/p/w500/${favourite.poster_path}`} alt="" />
                 <span className='description'>{favourite.overview}</span>

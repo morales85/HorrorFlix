@@ -7,9 +7,8 @@ import Snackbar from '@material-ui/core/Snackbar';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import alt from '../style/alt.png';
-
-
 import '../style/snack.css'
+var moment = require('moment');
 
 
 
@@ -80,6 +79,8 @@ class Movie extends Component {
         }}
         message={<span id="message-id">{movie.title} added to your favourites.</span>}
       />
+      <h5 className='title'>{movie.title}</h5> 
+        <h5 className='date'>({moment(movie.release_date).format('Do of MMMM, YYYY')})</h5>
         <Link to={`/movies/${movie.title}`}>
             <img className="img"  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} onError={this.alt} />
         </Link>
