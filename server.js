@@ -5,6 +5,9 @@ const api = require('./server/route/api')
 const mongoose = require('mongoose')
 mongoose.connect("mongodb://localhost/reflixFS", { useNewUrlParser: true })
  
+
+app.use(express.static(path.join(__dirname, 'build')));
+
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 
@@ -21,6 +24,12 @@ app.use('/', api)
 
 
 const port = 5000
+
+app.get('*', function (req, res) {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
+
 app.listen(port, function(){
     console.log(`running on port ${port}`)
 })

@@ -63,7 +63,7 @@ class App extends Component {
       newMovies: allNew
     })
 
-    let favs = await axios.get("http://localhost:5000/movies", function(){})
+    let favs = await axios.get("/movies", function(){})
     this.setState({
       favourites: favs.data
     })
@@ -85,14 +85,14 @@ searchMovie = (event) => {
 }
 
 newFav = async movie => {
-  let data = await axios.post("http://localhost:5000/movie", movie, function(){})
+  let data = await axios.post("/movie", movie, function(){})
   this.setState({
     favourites: data.data
   })
 }
 
 newFavTv = async show => {
-  let data = await axios.post("http://localhost:5000/show", show, function(){})
+  let data = await axios.post("/show", show, function(){})
   this.setState({
     favouritesTv: data.data
   })
@@ -100,8 +100,8 @@ newFavTv = async show => {
 
 deleteFav = async movie => {
   // console.log(movie)
-  let data = await axios.delete(`http://localhost:5000/movie/${movie.title}`)
-  let favs = await axios.get("http://localhost:5000/movies", function(){})
+  let data = await axios.delete(`/movie/${movie.title}`)
+  let favs = await axios.get("/movies", function(){})
   this.setState({
     favourites: favs.data
   })
