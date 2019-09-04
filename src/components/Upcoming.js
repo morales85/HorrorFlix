@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-// import {Link } from 'react-router-dom'
 import NewU from "./NewU";
-
 import Button from '@material-ui/core/Button';
 import '../style/catalog.css'
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -78,8 +76,7 @@ class Upcoming extends Component {
   render() {
     let upcoming = this.props.upcoming
     let input = this.props.input.toLowerCase()
-  // console.log(upcoming)
-  // console.log(this.props.favourites)
+
   const theme = createMuiTheme({
     palette: {
       primary: { main: '#11cb5f' }, 
@@ -91,7 +88,6 @@ class Upcoming extends Component {
             <div className='menu'>
                 <input name="input" type="text" placeholder="Find a movie!" value={this.props.input} onChange={this.searchMovie} />
 
-{/* <Snack /> */}
           </div>
         <div className="movies">
                 <h2>Upcoming movies:</h2>

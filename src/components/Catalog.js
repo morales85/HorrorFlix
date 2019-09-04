@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import {Link } from 'react-router-dom'
 import Movie from "./Movie";
 import Button from '@material-ui/core/Button';
 import '../style/catalog.css'
@@ -19,7 +18,6 @@ class Catalog extends Component {
     }
   }
 
-  
     searchMovie = (e) => {
         this.props.searchMovie(e)
       }
@@ -76,12 +74,8 @@ class Catalog extends Component {
         }
 
   render() {
-    console.log(Math.floor(this.props.movies.length / 16) )
     let movies = this.props.movies
     let input = this.props.input.toLowerCase()
-  // console.log(movies)
-  // console.log(this.props.favourites)
-
 
   const theme = createMuiTheme({
     palette: {
@@ -94,7 +88,6 @@ class Catalog extends Component {
             <div className='menu'>
                 <input name="input" type="text" placeholder="Find a movie!" value={this.props.input} onChange={this.searchMovie} />
 
-{/* <Snack /> */}
           </div>
         <div className="movies">
                 <h2>Popular movies:</h2>
