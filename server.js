@@ -3,6 +3,7 @@ const app = express()
 const bodyParser = require('body-parser')
 const api = require('./server/route/api')
 const mongoose = require('mongoose')
+const path = require('path')
 mongoose.connect(process.env.MONGODB_URI||'mongodb://localhost/reflixFS')
 
 
